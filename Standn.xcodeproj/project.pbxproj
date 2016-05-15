@@ -7,21 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2EA74F3CB9E65772374DBB4 /* Pods_Standn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3416F73FEF24D112E21AC1 /* Pods_Standn.framework */; };
+		F96C51841CE30699001C14F0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C51831CE30699001C14F0 /* CustomButton.swift */; };
+		F96C51861CE45028001C14F0 /* TimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C51851CE45028001C14F0 /* TimerVC.swift */; };
 		F9A6537A1CE2F6D800D52B0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A653791CE2F6D800D52B0B /* AppDelegate.swift */; };
-		F9A6537C1CE2F6D800D52B0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A6537B1CE2F6D800D52B0B /* ViewController.swift */; };
+		F9A6537C1CE2F6D800D52B0B /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A6537B1CE2F6D800D52B0B /* HomeVC.swift */; };
 		F9A6537F1CE2F6D800D52B0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A6537D1CE2F6D800D52B0B /* Main.storyboard */; };
-		F9A653811CE2F6D800D52B0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A653801CE2F6D800D52B0B /* Assets.xcassets */; };
 		F9A653841CE2F6D800D52B0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A653821CE2F6D800D52B0B /* LaunchScreen.storyboard */; };
+		F9A6538E1CE2FB5000D52B0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A6538D1CE2FB5000D52B0B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C3416F73FEF24D112E21AC1 /* Pods_Standn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Standn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		145301C0EA96563155BB5794 /* Pods-Standn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Standn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Standn/Pods-Standn.debug.xcconfig"; sourceTree = "<group>"; };
+		68E44BF1ED969094152CFE90 /* Pods-Standn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Standn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Standn/Pods-Standn.release.xcconfig"; sourceTree = "<group>"; };
+		F96C51831CE30699001C14F0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F96C51851CE45028001C14F0 /* TimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
 		F9A653761CE2F6D800D52B0B /* Standn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A653791CE2F6D800D52B0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F9A6537B1CE2F6D800D52B0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F9A6537B1CE2F6D800D52B0B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		F9A6537E1CE2F6D800D52B0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F9A653801CE2F6D800D52B0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A653831CE2F6D800D52B0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9A653851CE2F6D800D52B0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9A6538D1CE2FB5000D52B0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2EA74F3CB9E65772374DBB4 /* Pods_Standn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85C76DEE1886D1409D992B4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				145301C0EA96563155BB5794 /* Pods-Standn.debug.xcconfig */,
+				68E44BF1ED969094152CFE90 /* Pods-Standn.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A92A1CDAF4C23E969336E47A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C3416F73FEF24D112E21AC1 /* Pods_Standn.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F96C51811CE3065B001C14F0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F9A6537B1CE2F6D800D52B0B /* HomeVC.swift */,
+				F96C51851CE45028001C14F0 /* TimerVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F96C51821CE3066C001C14F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F9A6537D1CE2F6D800D52B0B /* Main.storyboard */,
+				F9A653821CE2F6D800D52B0B /* LaunchScreen.storyboard */,
+				F96C51831CE30699001C14F0 /* CustomButton.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		F9A6536D1CE2F6D800D52B0B = {
 			isa = PBXGroup;
 			children = (
 				F9A653781CE2F6D800D52B0B /* Standn */,
 				F9A653771CE2F6D800D52B0B /* Products */,
+				85C76DEE1886D1409D992B4C /* Pods */,
+				A92A1CDAF4C23E969336E47A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,11 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				F9A653791CE2F6D800D52B0B /* AppDelegate.swift */,
-				F9A6537B1CE2F6D800D52B0B /* ViewController.swift */,
-				F9A6537D1CE2F6D800D52B0B /* Main.storyboard */,
-				F9A653801CE2F6D800D52B0B /* Assets.xcassets */,
-				F9A653821CE2F6D800D52B0B /* LaunchScreen.storyboard */,
+				F96C51821CE3066C001C14F0 /* View */,
+				F96C51811CE3065B001C14F0 /* Controller */,
 				F9A653851CE2F6D800D52B0B /* Info.plist */,
+				F9A6538D1CE2FB5000D52B0B /* Assets.xcassets */,
 			);
 			path = Standn;
 			sourceTree = "<group>";
@@ -71,9 +117,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A653881CE2F6D800D52B0B /* Build configuration list for PBXNativeTarget "Standn" */;
 			buildPhases = (
+				B2AAD1EF0DDFAE3B9DC646A2 /* Check Pods Manifest.lock */,
 				F9A653721CE2F6D800D52B0B /* Sources */,
 				F9A653731CE2F6D800D52B0B /* Frameworks */,
 				F9A653741CE2F6D800D52B0B /* Resources */,
+				2AD1B4B215676F42C9B2B4DC /* Embed Pods Frameworks */,
+				441B344434CA15F387E78C31 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,20 +172,70 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A653841CE2F6D800D52B0B /* LaunchScreen.storyboard in Resources */,
-				F9A653811CE2F6D800D52B0B /* Assets.xcassets in Resources */,
+				F9A6538E1CE2FB5000D52B0B /* Assets.xcassets in Resources */,
 				F9A6537F1CE2F6D800D52B0B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2AD1B4B215676F42C9B2B4DC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Standn/Pods-Standn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		441B344434CA15F387E78C31 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Standn/Pods-Standn-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2AAD1EF0DDFAE3B9DC646A2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F9A653721CE2F6D800D52B0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9A6537C1CE2F6D800D52B0B /* ViewController.swift in Sources */,
+				F9A6537C1CE2F6D800D52B0B /* HomeVC.swift in Sources */,
 				F9A6537A1CE2F6D800D52B0B /* AppDelegate.swift in Sources */,
+				F96C51861CE45028001C14F0 /* TimerVC.swift in Sources */,
+				F96C51841CE30699001C14F0 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +344,7 @@
 		};
 		F9A653891CE2F6D800D52B0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 145301C0EA96563155BB5794 /* Pods-Standn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Standn/Info.plist;
@@ -256,6 +356,7 @@
 		};
 		F9A6538A1CE2F6D800D52B0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E44BF1ED969094152CFE90 /* Pods-Standn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Standn/Info.plist;
@@ -284,6 +385,7 @@
 				F9A6538A1CE2F6D800D52B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

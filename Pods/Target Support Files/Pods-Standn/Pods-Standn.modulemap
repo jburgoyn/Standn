@@ -1,0 +1,6 @@
+framework module Pods_Standn {
+  umbrella header "Pods-Standn-umbrella.h"
+
+  export *
+  module * { export * }
+}
