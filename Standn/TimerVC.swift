@@ -29,6 +29,7 @@ class TimerVC: UIViewController {
     
     var startTime = NSDate()
     var endTime: NSDate!
+    var currentTime: NSDate!
     
     var notificationTimes = [NSDate]()
     var notifications = [UILocalNotification]()
@@ -48,7 +49,7 @@ class TimerVC: UIViewController {
         staticSitting = minutesSitting
         staticStanding = minutesStanding
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateTimer", name:
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"startTimer", name:
             UIApplicationWillEnterForegroundNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"pauseTimerResign", name:
@@ -79,6 +80,7 @@ class TimerVC: UIViewController {
                 let notification = UILocalNotification()
                 
                 notification.alertBody = "Way to go! You may sit back down."
+                notification.soundName = UILocalNotificationDefaultSoundName
                 notification.fireDate = notificationTimes[cycle]
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -91,28 +93,15 @@ class TimerVC: UIViewController {
         
         endTime = startTime.dateByAddingTimeInterval(Double(hours) * 60)
         
-        print("\(hours) hours")
-        print("\(minutesStanding) minutes")
-        print(startTime)
-        print(endTime)
-        print(notificationTimes)
-        print(notificationTimes.count)
+//        print("\(hours) hours")
+//        print("\(minutesStanding) minutes")
+//        print(startTime)
+//        print(endTime)
+//        print(notificationTimes)
+//        print(notificationTimes.count)
         
     }
     
-    func updateTimer() {
-        
-        let currentTime = NSDate()
-        let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
-        
-        print(startTime)
-        print(currentTime)
-        print("\(timeElapsed) seconds have passed since beginning schedule")
-        
-        timerLbl.text = String(timeElapsed)
-        startTimer()
-        
-    }
     
     func pauseTimerResign() {
         
@@ -123,49 +112,104 @@ class TimerVC: UIViewController {
     
     func startTimer(){
         
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: true)
         
     }
     
     func update() {
         
-        if (count > 0) {
+        print("****************")
+        currentTime = NSDate()
+        let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
+        print("\(timeElapsed) seconds have passed since beginning schedule")
+    
+        let calendar = NSCalendar.currentCalendar()
+        let startTimeSecond = calendar.component(.Second, fromDate: startTime)
+        let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
+        
+      
+        print("\(startTimeSecond) start time seconds")
+        print("\(currentTimeSecond) current time seconds")
+        
+        if (currentTimeSecond - startTimeSecond) > 0 {
             
-            if (minutesSitting > 0) {
+            print("Greater than zero")
+            
+            if (currentTimeSecond - startTimeSecond) <= staticSitting {
                 
+                stateLbl.text = "Sitting"
+                minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
                 timerLbl.text = String(minutesSitting)
-                minutesSitting -= 1
                 
-                print(minutesSitting)
-                print(staticSitting)
                 
-            } else if (minutesStanding > 0) {
+            } else if (currentTimeSecond - startTimeSecond) > staticSitting {
                 
                 stateLbl.text = "Standing"
+                minutesStanding = startTimeSecond - currentTimeSecond + 60
                 timerLbl.text = String(minutesStanding)
-                minutesStanding -= 1
-                
                 print(minutesStanding)
-                print(staticStanding)
-                
-            } else if (minutesSitting == 0 && minutesStanding == 0) {
-                
-                timerLbl.text = "0"
-                stateLbl.text = "Sitting"
-                minutesSitting = staticSitting
-                minutesStanding = staticStanding
-                count -= 1
-                print("Count = \(count)")
                 
             }
             
+        } else if (currentTimeSecond - startTimeSecond) <= 0 {
             
-        } else {
+             print("Less than zero")
             
-            print("Finished work day")
-            timer.invalidate()
+            if (currentTimeSecond - startTimeSecond + 60) <= staticSitting {
+                
+                stateLbl.text = "Sitting"
+                minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
+                timerLbl.text = String(minutesSitting)
+                
+            } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
+                
+                stateLbl.text = "Standing"
+                minutesStanding = startTimeSecond - currentTimeSecond
+                timerLbl.text = String(minutesStanding)
+                
+            }
             
         }
+        
+        
+        
+//        if (count > 0 ) {
+//            
+//            if (minutesSitting > 0) {
+//                
+//                timerLbl.text = String(minutesSitting)
+//                minutesSitting -= 1
+//
+//                print(minutesSitting)
+//                print(staticSitting)
+//                
+//            } else if (minutesStanding > 0) {
+//                
+//                
+//                timerLbl.text = String(minutesStanding)
+//                minutesStanding -= 1
+//                
+//                print(minutesStanding)
+//                print(staticStanding)
+//                
+//            } else if (minutesSitting == 0 && minutesStanding == 0) {
+//                
+//                timerLbl.text = "0"
+//                minutesSitting = staticSitting
+//                minutesStanding = staticStanding
+//                count -= 1
+//                print("Count = \(count)")
+//                
+//            }
+//            
+//            
+//        } else {
+//            
+//            print("Finished work day")
+//            timer.invalidate()
+//            
+//        }
         
     }
     
