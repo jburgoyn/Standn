@@ -93,13 +93,19 @@ class TimerVC: UIViewController {
         
         endTime = startTime.dateByAddingTimeInterval(Double(hours) * 60)
         
-//        print("\(hours) hours")
-//        print("\(minutesStanding) minutes")
-//        print(startTime)
-//        print(endTime)
-//        print(notificationTimes)
-//        print(notificationTimes.count)
         
+    }
+    
+    
+    
+    @IBAction func pauseTimer(sender: AnyObject) {
+        
+        // Pause the timer
+    }
+    
+    @IBAction func endSchedule(sender: AnyObject) {
+        
+        // End the current schedule, invalidate the notifications, and return to home screen to reset schedule.
     }
     
     

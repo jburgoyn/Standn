@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sitting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVd-NA-Dyl">
-                                <rect key="frame" x="276" y="227" width="49" height="21"/>
+                                <rect key="frame" x="275" y="227" width="50" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="EWt-Jw-eJV"/>
                                 </constraints>
@@ -52,18 +52,60 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHy-zD-PFP" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
+                                <rect key="frame" x="240" y="550" width="120" height="30"/>
+                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="G8P-IQ-BXF"/>
+                                </constraints>
+                                <state key="normal" title="End Schedule"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="endSchedule:" destination="52E-ns-daG" eventType="touchUpInside" id="chd-Zl-FV1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybY-54-8Nx" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
+                                <rect key="frame" x="240" y="512" width="120" height="30"/>
+                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Vvq-hD-w4h"/>
+                                </constraints>
+                                <state key="normal" title="Pause"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pauseTimer:" destination="52E-ns-daG" eventType="touchUpInside" id="PxQ-Ry-0HP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UTZ-PF-sl7" firstAttribute="top" secondItem="Tzn-PR-jeZ" secondAttribute="bottom" constant="1" id="7Me-3T-OGf"/>
                             <constraint firstItem="CQE-jh-f89" firstAttribute="top" secondItem="te0-GJ-Juo" secondAttribute="top" id="7mm-j7-sRl"/>
+                            <constraint firstItem="bHy-zD-PFP" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="AOW-py-Ekg"/>
                             <constraint firstAttribute="trailing" secondItem="CQE-jh-f89" secondAttribute="trailing" id="DvG-Ns-COL"/>
+                            <constraint firstItem="bHy-zD-PFP" firstAttribute="top" secondItem="ybY-54-8Nx" secondAttribute="bottom" constant="8" id="PJC-At-W8f"/>
                             <constraint firstItem="CQE-jh-f89" firstAttribute="leading" secondItem="te0-GJ-Juo" secondAttribute="leading" id="Qyv-dd-Tyw"/>
                             <constraint firstItem="YVd-NA-Dyl" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="c6T-cs-cpf"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="dIH-wO-rLi"/>
+                            <constraint firstItem="fSi-zu-uxt" firstAttribute="top" secondItem="bHy-zD-PFP" secondAttribute="bottom" constant="20" id="eTi-Cc-m2w"/>
                             <constraint firstItem="UTZ-PF-sl7" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="wUA-ca-D7S"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="centerY" secondItem="te0-GJ-Juo" secondAttribute="centerY" id="wwp-ZR-BsM"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="top" secondItem="YVd-NA-Dyl" secondAttribute="bottom" constant="29" id="xTn-lW-Olc"/>
+                            <constraint firstItem="ybY-54-8Nx" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="y26-kE-7aP"/>
                         </constraints>
                     </view>
                     <connections>
