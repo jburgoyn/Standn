@@ -21,7 +21,7 @@ class HomeVC: UIViewController {
     var hours = 8
     var minutes = 15
     
-    var timerData = [Int]()
+    var timerData = ["hours": 8, "minutes": 15]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class HomeVC: UIViewController {
         
         let interval = 1
         hours = Int(sender.value / Float(interval) ) * interval
+        timerData.updateValue(hours, forKey: "hours")
         
         hoursLbl.text = String(hours)
         
@@ -42,14 +43,14 @@ class HomeVC: UIViewController {
         
         let interval = 5
         minutes = Int(sender.value / Float(interval) ) * interval
+        timerData.updateValue(minutes, forKey: "minutes")
+        
         minutesStandLbl.text = String(minutes)
         
     }
     
     @IBAction func startTimer(sender: CustomButton) {
         
-        timerData.append(hours)
-        timerData.append(minutes)
         performSegueWithIdentifier("startTimer", sender: timerData)
         
     }
@@ -60,7 +61,7 @@ class HomeVC: UIViewController {
             
             if let detailVC = segue.destinationViewController as? TimerVC {
                 
-                if let timerData = sender as? [Int] {
+                if let timerData = sender as? Dictionary<String, Int> {
                     
                     detailVC.timerData = timerData
                 }
@@ -68,7 +69,7 @@ class HomeVC: UIViewController {
         }
     }
     
-
+    @IBAction func returnHome(segue: UIStoryboardSegue) {}
 
 }
 

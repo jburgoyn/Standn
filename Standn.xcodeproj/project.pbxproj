@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B2EA74F3CB9E65772374DBB4 /* Pods_Standn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3416F73FEF24D112E21AC1 /* Pods_Standn.framework */; };
+		F905E7401CF14FB90082661D /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F905E73F1CF14FB90082661D /* KDCircularProgress.swift */; };
 		F96C51841CE30699001C14F0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C51831CE30699001C14F0 /* CustomButton.swift */; };
 		F96C51861CE45028001C14F0 /* TimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C51851CE45028001C14F0 /* TimerVC.swift */; };
 		F9A6537A1CE2F6D800D52B0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A653791CE2F6D800D52B0B /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 		0C3416F73FEF24D112E21AC1 /* Pods_Standn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Standn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		145301C0EA96563155BB5794 /* Pods-Standn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Standn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Standn/Pods-Standn.debug.xcconfig"; sourceTree = "<group>"; };
 		68E44BF1ED969094152CFE90 /* Pods-Standn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Standn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Standn/Pods-Standn.release.xcconfig"; sourceTree = "<group>"; };
+		F905E73F1CF14FB90082661D /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		F96C51831CE30699001C14F0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F96C51851CE45028001C14F0 /* TimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
 		F9A653761CE2F6D800D52B0B /* Standn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 				F9A6537D1CE2F6D800D52B0B /* Main.storyboard */,
 				F9A653821CE2F6D800D52B0B /* LaunchScreen.storyboard */,
 				F96C51831CE30699001C14F0 /* CustomButton.swift */,
+				F905E73F1CF14FB90082661D /* KDCircularProgress.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A6537C1CE2F6D800D52B0B /* HomeVC.swift in Sources */,
+				F905E7401CF14FB90082661D /* KDCircularProgress.swift in Sources */,
 				F9A6537A1CE2F6D800D52B0B /* AppDelegate.swift in Sources */,
 				F96C51861CE45028001C14F0 /* TimerVC.swift in Sources */,
 				F96C51841CE30699001C14F0 /* CustomButton.swift in Sources */,

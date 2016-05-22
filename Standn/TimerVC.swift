@@ -13,12 +13,12 @@ class TimerVC: UIViewController {
     // Outlets
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var stateLbl: UILabel!
+    @IBOutlet weak var pauseButton: CustomButton!
     
     // Variables
     
-    var timerData = [Int]()
+    var timerData = ["hours": Int(), "minutes": Int()]
     var hours = Int()
-    var count = Int()
     
     var staticStanding = Int()
     var staticSitting = Int()
@@ -34,20 +34,24 @@ class TimerVC: UIViewController {
     var notificationTimes = [NSDate]()
     var notifications = [UILocalNotification]()
     
+    var paused: Bool = false
+    
+    var progress = KDCircularProgress()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hours = timerData[0]
-        minutesStanding = timerData[1]
-        
-        count = hours
+        hours = timerData["hours"]!
+        minutesStanding = timerData["minutes"]!
         
         minutesSitting = 60 - minutesStanding
         timerLbl.text = String(minutesSitting)
         
         staticSitting = minutesSitting
         staticStanding = minutesStanding
+        endTime = startTime.dateByAddingTimeInterval(Double(hours) * 60)
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"startTimer", name:
             UIApplicationWillEnterForegroundNotification, object: nil)
@@ -55,9 +59,137 @@ class TimerVC: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"pauseTimerResign", name:
             UIApplicationWillResignActiveNotification, object: nil)
         
-        for cycle in 1 ... count {
+        createNotifications()
+        createCircularProgress()
+        startTimer()
+        
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+    }
+    
+    func createCircularProgress() {
+        
+        progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 225, height: 225))
+        progress.startAngle = -90
+        progress.progressThickness = 0.2
+        progress.trackThickness = 0.2
+        progress.clockwise = true
+        progress.center = view.center
+        progress.gradientRotateSpeed = 2
+        progress.roundedCorners = true
+        progress.glowMode = .NoGlow
+        progress.angle = 360
+        progress.setColors(UIColor(colorLiteralRed: 17/255, green: 146/255, blue: 212/255, alpha: 1.0))
+        view.addSubview(progress)
+    }
+    
+    @IBAction func pauseTimer(sender: AnyObject) {
+        
+        if paused == false {
             
-           
+            timer.invalidate()
+            paused = true
+            pauseButton.setTitle("Resume", forState: .Normal)
+            
+        } else {
+            
+            startTimer()
+            paused = false
+            pauseButton.setTitle("Pause", forState: .Normal)
+        }
+    }
+    
+    @IBAction func endSchedule(sender: AnyObject) {
+        
+        // End the current schedule, invalidate the notifications, and return to home screen to reset schedule.
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        timerData.removeAll()
+        timer.invalidate()
+        self.performSegueWithIdentifier("returnHome", sender: self)
+    }
+    
+    
+    func pauseTimerResign() {
+        
+        timer.invalidate()
+    }
+    
+    
+    
+    func startTimer(){
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: true)
+        
+    }
+    
+    func update() {
+        
+        print("****************")
+        currentTime = NSDate()
+        let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
+        print("\(timeElapsed) seconds have passed since beginning schedule")
+        
+        let calendar = NSCalendar.currentCalendar()
+        let startTimeSecond = calendar.component(.Second, fromDate: startTime)
+        let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
+        
+        
+        print("\(startTimeSecond) start time seconds")
+        print("\(currentTimeSecond) current time seconds")
+        
+        if (currentTimeSecond - startTimeSecond) > 0 {
+            
+            print("Greater than zero")
+            
+            if (currentTimeSecond - startTimeSecond) <= staticSitting {
+                
+                stateLbl.text = "Sitting"
+                minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
+                timerLbl.text = String(minutesSitting)
+                progress.angle = Double(minutesSitting*(360/staticSitting))
+                
+                
+            } else if (currentTimeSecond - startTimeSecond) > staticSitting {
+                
+                stateLbl.text = "Standing"
+                minutesStanding = startTimeSecond - currentTimeSecond + 60
+                timerLbl.text = String(minutesStanding)
+                print(minutesStanding)
+                progress.angle = Double(minutesStanding*(360/staticStanding))
+                
+            }
+            
+        } else if (currentTimeSecond - startTimeSecond) <= 0 {
+            
+            print("Less than zero")
+            
+            if (currentTimeSecond - startTimeSecond + 60) <= staticSitting {
+                
+                stateLbl.text = "Sitting"
+                minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
+                timerLbl.text = String(minutesSitting)
+                progress.angle = Double(minutesSitting*(360/staticSitting))
+                
+            } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
+                
+                stateLbl.text = "Standing"
+                minutesStanding = startTimeSecond - currentTimeSecond
+                timerLbl.text = String(minutesStanding)
+                progress.angle = Double(minutesStanding*(360/staticStanding))
+            }
+            
+        }
+        
+    }
+    
+    func createNotifications() {
+        
+        for cycle in 1 ... hours {
+            
+            
             notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesSitting + ((cycle - 1) * minutesStanding))))
             notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesStanding + cycle * minutesSitting)))
             
@@ -88,138 +220,6 @@ class TimerVC: UIViewController {
             
         }
         
-        
-        startTimer()
-        
-        endTime = startTime.dateByAddingTimeInterval(Double(hours) * 60)
-        
-        
     }
-    
-    
-    
-    @IBAction func pauseTimer(sender: AnyObject) {
-        
-        // Pause the timer
-    }
-    
-    @IBAction func endSchedule(sender: AnyObject) {
-        
-        // End the current schedule, invalidate the notifications, and return to home screen to reset schedule.
-    }
-    
-    
-    func pauseTimerResign() {
-        
-        timer.invalidate()
-    }
-    
-    
-    
-    func startTimer(){
-        
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: true)
-        
-    }
-    
-    func update() {
-        
-        print("****************")
-        currentTime = NSDate()
-        let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
-        print("\(timeElapsed) seconds have passed since beginning schedule")
-    
-        let calendar = NSCalendar.currentCalendar()
-        let startTimeSecond = calendar.component(.Second, fromDate: startTime)
-        let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
-        
-      
-        print("\(startTimeSecond) start time seconds")
-        print("\(currentTimeSecond) current time seconds")
-        
-        if (currentTimeSecond - startTimeSecond) > 0 {
-            
-            print("Greater than zero")
-            
-            if (currentTimeSecond - startTimeSecond) <= staticSitting {
-                
-                stateLbl.text = "Sitting"
-                minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
-                timerLbl.text = String(minutesSitting)
-                
-                
-            } else if (currentTimeSecond - startTimeSecond) > staticSitting {
-                
-                stateLbl.text = "Standing"
-                minutesStanding = startTimeSecond - currentTimeSecond + 60
-                timerLbl.text = String(minutesStanding)
-                print(minutesStanding)
-                
-            }
-            
-        } else if (currentTimeSecond - startTimeSecond) <= 0 {
-            
-             print("Less than zero")
-            
-            if (currentTimeSecond - startTimeSecond + 60) <= staticSitting {
-                
-                stateLbl.text = "Sitting"
-                minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
-                timerLbl.text = String(minutesSitting)
-                
-            } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
-                
-                stateLbl.text = "Standing"
-                minutesStanding = startTimeSecond - currentTimeSecond
-                timerLbl.text = String(minutesStanding)
-                
-            }
-            
-        }
-        
-        
-        
-//        if (count > 0 ) {
-//            
-//            if (minutesSitting > 0) {
-//                
-//                timerLbl.text = String(minutesSitting)
-//                minutesSitting -= 1
-//
-//                print(minutesSitting)
-//                print(staticSitting)
-//                
-//            } else if (minutesStanding > 0) {
-//                
-//                
-//                timerLbl.text = String(minutesStanding)
-//                minutesStanding -= 1
-//                
-//                print(minutesStanding)
-//                print(staticStanding)
-//                
-//            } else if (minutesSitting == 0 && minutesStanding == 0) {
-//                
-//                timerLbl.text = "0"
-//                minutesSitting = staticSitting
-//                minutesStanding = staticStanding
-//                count -= 1
-//                print("Count = \(count)")
-//                
-//            }
-//            
-//            
-//        } else {
-//            
-//            print("Finished work day")
-//            timer.invalidate()
-//            
-//        }
-        
-    }
-    
-    
-    
     
 }
