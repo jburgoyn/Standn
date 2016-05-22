@@ -143,62 +143,82 @@
                                     <constraint firstAttribute="height" constant="65" id="dZR-fP-bhH"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Hour_Minute_Gauge" translatesAutoresizingMaskIntoConstraints="NO" id="aKO-Kt-B5t">
-                                <rect key="frame" x="255" y="296" width="25" height="79"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Hour_Minute_Gauge" translatesAutoresizingMaskIntoConstraints="NO" id="IPw-j3-Xxf">
-                                <rect key="frame" x="255" y="76" width="25" height="79"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBC-5m-U3J">
-                                <rect key="frame" x="296" y="73" width="28" height="59"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="50"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0w-Ea-VIz">
-                                <rect key="frame" x="287" y="131" width="45" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WJ-SO-ODU">
-                                <rect key="frame" x="298" y="296" width="56" height="60"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="50"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minutes/Hour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnf-OF-PhS">
-                                <rect key="frame" x="287" y="354" width="99" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uBn-81-8sB" userLabel="Hours Stack View">
-                                <rect key="frame" x="20" y="172" width="560" height="51"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZsS-KH-ePY" userLabel="Hours Stack View">
+                                <rect key="frame" x="20" y="85" width="560" height="156"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="How long are you working?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44x-ch-xRm">
-                                        <rect key="frame" x="180" y="0.0" width="201" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="D0j-cP-3Wz">
-                                        <rect key="frame" x="-2" y="21" width="564" height="31"/>
-                                        <color key="minimumTrackTintColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="maximumTrackTintColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="hoursToWorkSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="bfh-83-3qh"/>
-                                        </connections>
-                                    </slider>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DGi-n0-q9G" userLabel="Hour/Gauge Stack View">
+                                        <rect key="frame" x="244" y="0.0" width="73" height="80"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="IPw-j3-Xxf">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="8pp-yM-vLg"/>
+                                                    <constraint firstAttribute="width" constant="20" id="Kay-7l-unL"/>
+                                                    <constraint firstAttribute="height" constant="79" id="tPb-Hf-2Cg"/>
+                                                    <constraint firstAttribute="height" constant="80" id="uU5-fv-qIF"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="8pp-yM-vLg"/>
+                                                        <exclude reference="tPb-Hf-2Cg"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BEg-d2-IT2">
+                                                <rect key="frame" x="28" y="0.0" width="45" height="80"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBC-5m-U3J">
+                                                        <rect key="frame" x="8" y="0.0" width="28" height="60"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="50"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0w-Ea-VIz">
+                                                        <rect key="frame" x="0.0" y="60" width="45" height="21"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uBn-81-8sB" userLabel="Hours Stack View">
+                                        <rect key="frame" x="0.0" y="100" width="560" height="56"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How long are you working?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44x-ch-xRm">
+                                                <rect key="frame" x="180" y="0.0" width="201" height="21"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="D0j-cP-3Wz">
+                                                <rect key="frame" x="-2" y="26" width="564" height="31"/>
+                                                <color key="minimumTrackTintColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="maximumTrackTintColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="hoursToWorkSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="bfh-83-3qh"/>
+                                                </connections>
+                                            </slider>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="D0j-cP-3Wz" firstAttribute="leading" secondItem="uBn-81-8sB" secondAttribute="leading" id="BTU-s0-GPW"/>
+                                            <constraint firstAttribute="trailing" secondItem="D0j-cP-3Wz" secondAttribute="trailing" id="w82-7Q-Odl"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="uBn-81-8sB" firstAttribute="leading" secondItem="ZsS-KH-ePY" secondAttribute="leading" id="F1Y-ve-QT4"/>
+                                    <constraint firstAttribute="trailing" secondItem="uBn-81-8sB" secondAttribute="trailing" id="NTw-Pf-hvO"/>
+                                </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pJ-Et-gTQ" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
-                                <rect key="frame" x="200" y="547" width="200" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pJ-Et-gTQ" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
+                                <rect key="frame" x="200" y="535" width="200" height="45"/>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="mbZ-ty-Jin"/>
-                                    <constraint firstAttribute="height" constant="45" id="pjd-RP-TYL"/>
+                                    <constraint firstAttribute="width" constant="200" id="C6x-du-sUW"/>
+                                    <constraint firstAttribute="height" constant="45" id="mGz-8Q-7c2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="Start!">
@@ -213,54 +233,101 @@
                                     <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B6B-fh-ZXs"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-oq-3ew" userLabel="Minutes Stack View">
-                                <rect key="frame" x="20" y="384" width="560" height="51"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3M3-eO-Qam" userLabel="Minutes Stack View">
+                                <rect key="frame" x="20" y="298" width="560" height="156"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Jgq-oA-Ee6">
-                                        <rect key="frame" x="92" y="0.0" width="377" height="21"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="g8Y-64-i0a" userLabel="Minutes/Gauge Stack View">
+                                        <rect key="frame" x="218" y="0.0" width="124" height="80"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="How many minutes per hour do you want to stand?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lL-gt-1rp">
-                                                <rect key="frame" x="0.0" y="0.0" width="377" height="21"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="aKO-Kt-B5t">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="GEm-5L-Av1"/>
+                                                    <constraint firstAttribute="width" constant="25" id="WyB-1K-ikn"/>
+                                                    <constraint firstAttribute="height" constant="79" id="eXd-7r-8lT"/>
+                                                    <constraint firstAttribute="width" constant="20" id="nPo-nB-XRo"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="WyB-1K-ikn"/>
+                                                        <exclude reference="eXd-7r-8lT"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wvM-QJ-nvp">
+                                                <rect key="frame" x="20" y="0.0" width="104" height="80"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8WJ-SO-ODU">
+                                                        <rect key="frame" x="24" y="0.0" width="56" height="59"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="50"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes/Hour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnf-OF-PhS">
+                                                        <rect key="frame" x="3" y="59" width="99" height="21"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="apP-2a-rfi"/>
+                                            <constraint firstAttribute="width" constant="124" id="dOB-FZ-DD1"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-oq-3ew" userLabel="Minutes Stack View">
+                                        <rect key="frame" x="0.0" y="100" width="560" height="56"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many minutes per hour do you want to stand?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lL-gt-1rp">
+                                                <rect key="frame" x="92" y="0.0" width="377" height="21"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="5" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-Ma-YzN">
+                                                <rect key="frame" x="-2" y="26" width="564" height="31"/>
+                                                <color key="minimumTrackTintColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="maximumTrackTintColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="minutesToStandMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="fsW-Xf-4mb"/>
+                                                </connections>
+                                            </slider>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ChU-Ma-YzN" firstAttribute="leading" secondItem="zB7-oq-3ew" secondAttribute="leading" id="Igf-ll-3XF"/>
+                                            <constraint firstAttribute="trailing" secondItem="ChU-Ma-YzN" secondAttribute="trailing" id="N48-pD-gl3"/>
+                                        </constraints>
                                     </stackView>
-                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="5" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-Ma-YzN">
-                                        <rect key="frame" x="-2" y="21" width="564" height="31"/>
-                                        <color key="minimumTrackTintColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="maximumTrackTintColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="minutesToStandMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="fsW-Xf-4mb"/>
-                                        </connections>
-                                    </slider>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="zB7-oq-3ew" firstAttribute="leading" secondItem="3M3-eO-Qam" secondAttribute="leading" id="Zsf-BK-3Iz"/>
+                                    <constraint firstAttribute="trailing" secondItem="zB7-oq-3ew" secondAttribute="trailing" id="rrQ-S4-3yv"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Oc6-Km-ulQ" secondAttribute="trailing" id="49N-8Q-yyt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4pJ-Et-gTQ" secondAttribute="bottom" constant="20" id="5cY-rC-QRx"/>
+                            <constraint firstAttribute="trailing" secondItem="3M3-eO-Qam" secondAttribute="trailing" constant="20" id="9jc-dz-6Wn"/>
                             <constraint firstItem="Oc6-Km-ulQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Dpi-Qv-JmL"/>
-                            <constraint firstItem="aKO-Kt-B5t" firstAttribute="width" secondItem="IPw-j3-Xxf" secondAttribute="width" id="Lb8-7L-Cr3"/>
-                            <constraint firstItem="aKO-Kt-B5t" firstAttribute="height" secondItem="IPw-j3-Xxf" secondAttribute="height" id="N6h-aI-5eq"/>
-                            <constraint firstItem="uBn-81-8sB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="RT4-qv-XtA"/>
-                            <constraint firstItem="zB7-oq-3ew" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="YEF-tf-7Kt"/>
-                            <constraint firstAttribute="trailing" secondItem="zB7-oq-3ew" secondAttribute="trailing" constant="20" id="h7H-oD-MFb"/>
-                            <constraint firstAttribute="trailing" secondItem="uBn-81-8sB" secondAttribute="trailing" constant="20" id="ilc-4T-kTT"/>
+                            <constraint firstItem="4pJ-Et-gTQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GkC-1a-79g"/>
+                            <constraint firstItem="ZsS-KH-ePY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="eJ9-dC-bHd"/>
+                            <constraint firstItem="ZsS-KH-ePY" firstAttribute="top" secondItem="Oc6-Km-ulQ" secondAttribute="bottom" constant="20" id="fAP-IZ-yKI"/>
+                            <constraint firstItem="3M3-eO-Qam" firstAttribute="top" secondItem="ZsS-KH-ePY" secondAttribute="bottom" constant="45" id="lNT-T7-l7i"/>
                             <constraint firstItem="Oc6-Km-ulQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nxp-Hy-XaV"/>
+                            <constraint firstAttribute="trailing" secondItem="ZsS-KH-ePY" secondAttribute="trailing" constant="20" id="snO-hs-wwY"/>
+                            <constraint firstItem="3M3-eO-Qam" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="vlz-Xv-RXc"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Lb8-7L-Cr3"/>
-                                <exclude reference="N6h-aI-5eq"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
+                        <outlet property="hourImgBar" destination="IPw-j3-Xxf" id="H3f-Kb-8gp"/>
                         <outlet property="hoursLbl" destination="vBC-5m-U3J" id="Vx0-JB-cnQ"/>
                         <outlet property="hoursToWorkSlider" destination="D0j-cP-3Wz" id="j4m-V2-ghc"/>
+                        <outlet property="minuteImgBar" destination="aKO-Kt-B5t" id="Q2j-S9-8rm"/>
                         <outlet property="minutesStandLbl" destination="8WJ-SO-ODU" id="Gq9-5U-Wss"/>
                         <outlet property="minutesToStandSlider" destination="ChU-Ma-YzN" id="pnB-Zb-eop"/>
                         <segue destination="52E-ns-daG" kind="show" identifier="startTimer" id="3ED-ky-bNJ"/>
@@ -272,6 +339,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Hour_Minute_Gauge" width="32" height="109"/>
+        <image name="1" width="20" height="92"/>
     </resources>
 </document>

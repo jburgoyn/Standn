@@ -1,6 +1,11 @@
 {
   "images" : [
     {
+      "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "1x"
+    },
+    {
       "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "Icon-Small@2x-1.png",
@@ -53,6 +58,11 @@
       "idiom" : "ipad",
       "filename" : "Icon-Small.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "2x"
     },
     {
       "size" : "40x40",
@@ -156,6 +166,11 @@
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "42mm"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "512x512",
+      "scale" : "1x"
     },
     {
       "size" : "512x512",

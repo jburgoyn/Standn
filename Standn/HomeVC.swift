@@ -16,6 +16,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var hoursLbl: UILabel!
     @IBOutlet weak var minutesStandLbl: UILabel!
     
+    @IBOutlet weak var hourImgBar: UIImageView!
+    @IBOutlet weak var minuteImgBar: UIImageView!
+    
     // Variables
     
     var hours = 8
@@ -25,9 +28,14 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        hourImgBar.image = UIImage(named: "8")
+        minuteImgBar.image = UIImage(named: "3")
+
     }
 
+    
+    
     
     @IBAction func hoursToWorkSliderMoved(sender: UISlider) {
         
@@ -36,6 +44,7 @@ class HomeVC: UIViewController {
         timerData.updateValue(hours, forKey: "hours")
         
         hoursLbl.text = String(hours)
+        hourImgBar.image = UIImage(named: String(hours))
         
     }
     
@@ -46,6 +55,7 @@ class HomeVC: UIViewController {
         timerData.updateValue(minutes, forKey: "minutes")
         
         minutesStandLbl.text = String(minutes)
+        minuteImgBar.image = UIImage(named: String(minutes/5))
         
     }
     
