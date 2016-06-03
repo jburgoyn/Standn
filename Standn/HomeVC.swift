@@ -65,6 +65,11 @@ class HomeVC: UIViewController {
         
     }
     
+    @IBAction func settings(sender: UIButton) {
+        
+        performSegueWithIdentifier("settings", sender: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         if segue.identifier == "startTimer" {

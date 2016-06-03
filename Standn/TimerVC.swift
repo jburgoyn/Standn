@@ -13,6 +13,7 @@ class TimerVC: UIViewController {
     // Outlets
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var stateLbl: UILabel!
+    @IBOutlet weak var calorieCountLbl: UILabel!
     @IBOutlet weak var pauseButton: CustomButton!
     
     // Variables
@@ -38,6 +39,10 @@ class TimerVC: UIViewController {
     
     var progress = KDCircularProgress()
     
+    // Calorie Burn Variables
+    var lifetimeCalories = 0.0
+    var todayCalories = 0.0
+    var userWeight = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +67,7 @@ class TimerVC: UIViewController {
         createNotifications()
         createCircularProgress()
         startTimer()
+        retrieveUserWeight()
         
         
     }
@@ -108,6 +114,8 @@ class TimerVC: UIViewController {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         timerData.removeAll()
         timer.invalidate()
+        todayCalories = 0.0
+        
         self.performSegueWithIdentifier("returnHome", sender: self)
     }
     
@@ -159,6 +167,7 @@ class TimerVC: UIViewController {
                 timerLbl.text = String(minutesStanding)
                 print(minutesStanding)
                 progress.angle = Double(minutesStanding*(360/staticStanding))
+                calculateCalorieBurn(userWeight)
                 
             }
             
@@ -179,6 +188,7 @@ class TimerVC: UIViewController {
                 minutesStanding = startTimeSecond - currentTimeSecond
                 timerLbl.text = String(minutesStanding)
                 progress.angle = Double(minutesStanding*(360/staticStanding))
+                calculateCalorieBurn(userWeight)
             }
             
         }
@@ -217,7 +227,34 @@ class TimerVC: UIViewController {
                 
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             }
+
+        }
+        
+    }
+    
+    func calculateCalorieBurn(weight: Int) {
+        
+        // need to address if leave app, then needs to know how long been out of app and whether or not sitting or standing so it can update. 
+        
+        
+        let caloriesBurnedPerMinute = (Double(userWeight) * 0.0053) + 0.0058
+        todayCalories += caloriesBurnedPerMinute
+        print(Int(todayCalories))
+        print(userWeight)
+        
+        calorieCountLbl.text = String(Int(todayCalories))
+        
+    }
+    
+    func retrieveUserWeight() {
+        
+        if let weight = NSUserDefaults.standardUserDefaults().objectForKey("userWeight") as? Int {
             
+            self.userWeight = weight
+            
+        } else {
+            
+            self.userWeight = 180
         }
         
     }

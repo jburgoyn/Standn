@@ -5,6 +5,108 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
+        <!--SettingsVC-->
+        <scene sceneID="uKj-qe-kj4">
+            <objects>
+                <viewController id="lD2-9v-D8b" customClass="SettingsVC" customModule="Standn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yXc-z1-jH9"/>
+                        <viewControllerLayoutGuide type="bottom" id="6mg-Mp-CWR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QdC-6d-1K6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vla-7z-K3a" customClass="UIControl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0c-g3-ffY">
+                                        <rect key="frame" x="265" y="31" width="71" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="M24-M8-dTa"/>
+                                            <constraint firstAttribute="width" constant="71" id="nqv-Vj-bf5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHv-ek-t5G">
+                                        <rect key="frame" x="8" y="32" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="ibo-7k-Qrd"/>
+                                            <constraint firstAttribute="width" constant="25" id="ujq-jn-6RF"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="BackArrow"/>
+                                        <connections>
+                                            <action selector="backToHome:" destination="lD2-9v-D8b" eventType="touchUpInside" id="1ik-70-dU2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="qHv-ek-t5G" secondAttribute="bottom" constant="8" id="2il-v5-f7z"/>
+                                    <constraint firstAttribute="bottom" secondItem="C0c-g3-ffY" secondAttribute="bottom" constant="8" id="96I-rZ-sGv"/>
+                                    <constraint firstItem="C0c-g3-ffY" firstAttribute="centerX" secondItem="Vla-7z-K3a" secondAttribute="centerX" id="Wfc-FO-TvS"/>
+                                    <constraint firstAttribute="height" constant="65" id="Xb6-ib-Clc"/>
+                                    <constraint firstItem="qHv-ek-t5G" firstAttribute="leading" secondItem="Vla-7z-K3a" secondAttribute="leading" constant="8" id="nzq-Q9-v46"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW2-qg-iuH">
+                                <rect key="frame" x="20" y="257" width="51" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uY-Ne-M3w">
+                                <rect key="frame" x="20" y="199" width="169" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFa-3i-c8h">
+                                <rect key="frame" x="20" y="228" width="169" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wD-SN-4WU">
+                                <rect key="frame" x="159" y="426" width="283" height="117"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="117" id="Aad-A0-r5E"/>
+                                    <constraint firstAttribute="width" constant="283" id="Qsd-uY-AuE"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OJ-EK-5bS">
+                                <rect key="frame" x="176" y="261" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="iNg-M6-5WI"/>
+                                    <constraint firstAttribute="width" constant="29" id="tVd-sM-XoQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vla-7z-K3a" firstAttribute="top" secondItem="QdC-6d-1K6" secondAttribute="top" id="P5E-EQ-Xfn"/>
+                            <constraint firstItem="6wD-SN-4WU" firstAttribute="centerX" secondItem="QdC-6d-1K6" secondAttribute="centerX" id="QWi-xJ-ywb"/>
+                            <constraint firstAttribute="trailing" secondItem="Vla-7z-K3a" secondAttribute="trailing" id="cHL-23-Th6"/>
+                            <constraint firstItem="Vla-7z-K3a" firstAttribute="leading" secondItem="QdC-6d-1K6" secondAttribute="leading" id="oYW-D5-20S"/>
+                            <constraint firstItem="6mg-Mp-CWR" firstAttribute="top" secondItem="6wD-SN-4WU" secondAttribute="bottom" constant="57" id="r95-cz-Mxd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="weightLbl" destination="9OJ-EK-5bS" id="xur-r8-t6l"/>
+                        <outlet property="weightSpinner" destination="6wD-SN-4WU" id="kUH-6I-JwZ"/>
+                        <segue destination="U9M-l7-DQe" kind="unwind" identifier="returnHome" unwindAction="returnHome:" id="uQT-t5-iZs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e6C-yQ-xD9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="U9M-l7-DQe" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1029" y="-285"/>
+        </scene>
         <!--TimerVC-->
         <scene sceneID="lem-zz-jtD">
             <objects>
@@ -58,7 +160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzn-PR-jeZ">
-                                <rect key="frame" x="286" y="277" width="28" height="46"/>
+                                <rect key="frame" x="286" y="277" width="27.5" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="HBf-nr-xYB"/>
                                 </constraints>
@@ -66,63 +168,104 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHy-zD-PFP" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
-                                <rect key="frame" x="200" y="535" width="200" height="45"/>
-                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="8Ws-Mh-D71"/>
-                                    <constraint firstAttribute="height" constant="45" id="ed1-IY-hml"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="End Schedule"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="endSchedule:" destination="52E-ns-daG" eventType="touchUpInside" id="chd-Zl-FV1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybY-54-8Nx" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
-                                <rect key="frame" x="200" y="482" width="200" height="45"/>
-                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="XYz-8k-SLi"/>
-                                    <constraint firstAttribute="height" constant="45" id="uJt-vm-l2g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Pause"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pauseTimer:" destination="52E-ns-daG" eventType="touchUpInside" id="PxQ-Ry-0HP"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CalorieBurned" translatesAutoresizingMaskIntoConstraints="NO" id="XDL-7P-gGT">
-                                <rect key="frame" x="413" y="476" width="57" height="57"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calories Burned Standing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5a-ZD-GOB">
-                                <rect key="frame" x="413" y="541" width="118" height="41"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQC-By-RSX">
-                                <rect key="frame" x="478" y="487" width="28" height="46"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="44"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bbe-fY-OFV">
+                                <rect key="frame" x="200" y="425" width="200" height="162"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="k9K-Z3-Hqk">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybY-54-8Nx" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="45"/>
+                                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="5lo-YZ-Ghn"/>
+                                                    <constraint firstAttribute="width" constant="200" id="nGS-lb-ouv"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Pause"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pauseTimer:" destination="52E-ns-daG" eventType="touchUpInside" id="PxQ-Ry-0HP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHy-zD-PFP" customClass="CustomButton" customModule="Standn" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="55" width="200" height="45"/>
+                                                <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="0Bh-Ut-a3a"/>
+                                                    <constraint firstAttribute="height" constant="45" id="0eM-g6-GZX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="End Schedule"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="endSchedule:" destination="52E-ns-daG" eventType="touchUpInside" id="chd-Zl-FV1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MbJ-d4-rtR">
+                                        <rect key="frame" x="0.0" y="110" width="200" height="52"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Bp-rx-uNC">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="52"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalorieBurned" translatesAutoresizingMaskIntoConstraints="NO" id="XDL-7P-gGT">
+                                                        <rect key="frame" x="0.0" y="4" width="45" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="45" id="FQ7-wl-xkS"/>
+                                                            <constraint firstAttribute="height" constant="45" id="gpN-Rr-9eN"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cQC-By-RSX">
+                                                        <rect key="frame" x="45" y="0.0" width="55" height="52"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="44"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todays Extra Calories" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5a-ZD-GOB">
+                                                <rect key="frame" x="100" y="4" width="100" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="OT7-nF-q5J"/>
+                                                    <constraint firstAttribute="width" constant="118" id="tGt-65-w4c"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="tGt-65-w4c"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="8Bp-rx-uNC" firstAttribute="leading" secondItem="MbJ-d4-rtR" secondAttribute="leading" id="rhc-Ib-ZRc"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="rhc-Ib-ZRc"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,18 +273,17 @@
                             <constraint firstItem="CQE-jh-f89" firstAttribute="top" secondItem="te0-GJ-Juo" secondAttribute="top" id="7mm-j7-sRl"/>
                             <constraint firstAttribute="trailing" secondItem="CQE-jh-f89" secondAttribute="trailing" id="DvG-Ns-COL"/>
                             <constraint firstItem="CQE-jh-f89" firstAttribute="leading" secondItem="te0-GJ-Juo" secondAttribute="leading" id="Qyv-dd-Tyw"/>
-                            <constraint firstItem="ybY-54-8Nx" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="WKF-nY-QvC"/>
                             <constraint firstItem="YVd-NA-Dyl" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="c6T-cs-cpf"/>
+                            <constraint firstItem="fSi-zu-uxt" firstAttribute="top" secondItem="Bbe-fY-OFV" secondAttribute="bottom" constant="18" id="cHR-Tm-wkW"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="dIH-wO-rLi"/>
-                            <constraint firstItem="bHy-zD-PFP" firstAttribute="top" secondItem="ybY-54-8Nx" secondAttribute="bottom" constant="8" id="pjf-Ua-9cb"/>
-                            <constraint firstItem="bHy-zD-PFP" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="qNA-pc-GgD"/>
-                            <constraint firstItem="fSi-zu-uxt" firstAttribute="top" secondItem="bHy-zD-PFP" secondAttribute="bottom" constant="20" id="tP1-jV-p0i"/>
+                            <constraint firstItem="Bbe-fY-OFV" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="iBW-JX-Nk7"/>
                             <constraint firstItem="UTZ-PF-sl7" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="wUA-ca-D7S"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="centerY" secondItem="te0-GJ-Juo" secondAttribute="centerY" id="wwp-ZR-BsM"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="top" secondItem="YVd-NA-Dyl" secondAttribute="bottom" constant="8" id="xTn-lW-Olc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="calorieCountLbl" destination="cQC-By-RSX" id="wUf-CC-g9q"/>
                         <outlet property="pauseButton" destination="ybY-54-8Nx" id="VcF-QF-CWu"/>
                         <outlet property="stateLbl" destination="YVd-NA-Dyl" id="GMM-2s-4Rf"/>
                         <outlet property="timerLbl" destination="Tzn-PR-jeZ" id="WGR-ou-aqm"/>
@@ -178,9 +320,22 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cth-Nd-Uii">
+                                        <rect key="frame" x="567" y="32" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Fw7-Xo-rfo"/>
+                                            <constraint firstAttribute="width" constant="25" id="eJe-p5-ziL"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Settings2"/>
+                                        <connections>
+                                            <action selector="settings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7vn-8L-70G"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.57254901960000004" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Cth-Nd-Uii" secondAttribute="trailing" constant="8" id="DAo-o8-mRr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cth-Nd-Uii" secondAttribute="bottom" constant="8" id="Qxm-Hd-and"/>
                                     <constraint firstAttribute="height" constant="65" id="dZR-fP-bhH"/>
                                     <constraint firstAttribute="bottom" secondItem="Ic5-BB-smf" secondAttribute="bottom" constant="8" id="fU9-zy-XJo"/>
                                     <constraint firstItem="Ic5-BB-smf" firstAttribute="centerX" secondItem="Oc6-Km-ulQ" secondAttribute="centerX" id="gkG-VO-dgV"/>
@@ -257,7 +412,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3M3-eO-Qam" userLabel="Minutes Stack View">
-                                <rect key="frame" x="20" y="307" width="560" height="156"/>
+                                <rect key="frame" x="20" y="306" width="560" height="156"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="g8Y-64-i0a" userLabel="Minutes/Gauge Stack View">
                                         <rect key="frame" x="218" y="0.0" width="124" height="80"/>
@@ -375,15 +530,18 @@
                         <outlet property="minutesStandLbl" destination="8WJ-SO-ODU" id="Gq9-5U-Wss"/>
                         <outlet property="minutesToStandSlider" destination="ChU-Ma-YzN" id="pnB-Zb-eop"/>
                         <segue destination="52E-ns-daG" kind="show" identifier="startTimer" id="3ED-ky-bNJ"/>
+                        <segue destination="lD2-9v-D8b" kind="show" identifier="settings" id="fhM-G4-WQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="287" y="389"/>
+            <point key="canvasLocation" x="305" y="411"/>
         </scene>
     </scenes>
     <resources>
         <image name="1" width="20" height="92"/>
+        <image name="BackArrow" width="150" height="150"/>
         <image name="CalorieBurned" width="100" height="100"/>
+        <image name="Settings2" width="150" height="150"/>
     </resources>
 </document>
