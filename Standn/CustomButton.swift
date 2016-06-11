@@ -46,7 +46,7 @@ class CustomButton: UIButton {
         self.layer.cornerRadius = cornerRadius
         
         // Calling animation
-        self.addTarget(self, action: "scaleToSmall", forControlEvents: .TouchDown)
+        self.addTarget(self, action: #selector(CustomButton.scaleToSmall), forControlEvents: .TouchDown)
         self.addTarget(self, action: "scaleToSmall", forControlEvents: .TouchDragEnter)
         self.addTarget(self, action: "scaleAnimation", forControlEvents: .TouchUpInside)
         self.addTarget(self, action: "scaleToDefault", forControlEvents: .TouchDragExit)

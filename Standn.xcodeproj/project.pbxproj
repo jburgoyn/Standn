@@ -17,6 +17,7 @@
 		F9A653841CE2F6D800D52B0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A653821CE2F6D800D52B0B /* LaunchScreen.storyboard */; };
 		F9A6538E1CE2FB5000D52B0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A6538D1CE2FB5000D52B0B /* Assets.xcassets */; };
 		F9DA846C1CFB54EC00FD8E44 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA846B1CFB54EC00FD8E44 /* SettingsVC.swift */; };
+		F9F610BF1D0BDF9200069792 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F610BE1D0BDF9200069792 /* CustomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F905E73F1CF14FB90082661D /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		F96C51831CE30699001C14F0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F96C51851CE45028001C14F0 /* TimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
+		F9A363C91D0BE575001AB5A2 /* Standn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Standn-Bridging-Header.h"; sourceTree = "<group>"; };
 		F9A653761CE2F6D800D52B0B /* Standn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Standn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A653791CE2F6D800D52B0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9A6537B1CE2F6D800D52B0B /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -34,6 +36,7 @@
 		F9A653851CE2F6D800D52B0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9A6538D1CE2FB5000D52B0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9DA846B1CFB54EC00FD8E44 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		F9F610BE1D0BDF9200069792 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 		F96C51811CE3065B001C14F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F9A653791CE2F6D800D52B0B /* AppDelegate.swift */,
 				F9A6537B1CE2F6D800D52B0B /* HomeVC.swift */,
 				F96C51851CE45028001C14F0 /* TimerVC.swift */,
 				F9DA846B1CFB54EC00FD8E44 /* SettingsVC.swift */,
@@ -82,6 +86,8 @@
 				F9A653821CE2F6D800D52B0B /* LaunchScreen.storyboard */,
 				F96C51831CE30699001C14F0 /* CustomButton.swift */,
 				F905E73F1CF14FB90082661D /* KDCircularProgress.swift */,
+				F9F610BE1D0BDF9200069792 /* CustomView.swift */,
+				F9A363C91D0BE575001AB5A2 /* Standn-Bridging-Header.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -107,7 +113,6 @@
 		F9A653781CE2F6D800D52B0B /* Standn */ = {
 			isa = PBXGroup;
 			children = (
-				F9A653791CE2F6D800D52B0B /* AppDelegate.swift */,
 				F96C51821CE3066C001C14F0 /* View */,
 				F96C51811CE3065B001C14F0 /* Controller */,
 				F9A653851CE2F6D800D52B0B /* Info.plist */,
@@ -145,7 +150,7 @@
 		F9A6536E1CE2F6D800D52B0B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Jonny B";
 				TargetAttributes = {
@@ -241,6 +246,7 @@
 				F9A6537C1CE2F6D800D52B0B /* HomeVC.swift in Sources */,
 				F905E7401CF14FB90082661D /* KDCircularProgress.swift in Sources */,
 				F9A6537A1CE2F6D800D52B0B /* AppDelegate.swift in Sources */,
+				F9F610BF1D0BDF9200069792 /* CustomView.swift in Sources */,
 				F96C51861CE45028001C14F0 /* TimerVC.swift in Sources */,
 				F96C51841CE30699001C14F0 /* CustomButton.swift in Sources */,
 				F9DA846C1CFB54EC00FD8E44 /* SettingsVC.swift in Sources */,
@@ -355,10 +361,14 @@
 			baseConfigurationReference = 145301C0EA96563155BB5794 /* Pods-Standn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Standn/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanburgoyne.Standn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Standn/Standn-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -367,10 +377,13 @@
 			baseConfigurationReference = 68E44BF1ED969094152CFE90 /* Pods-Standn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Standn/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanburgoyne.Standn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Standn/Standn-Bridging-Header.h";
 			};
 			name = Release;
 		};
