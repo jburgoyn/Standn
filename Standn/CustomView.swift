@@ -29,6 +29,8 @@ class CustomView: UIImageView {
         scaleAnim.springBounciness = 18
         self.layer.pop_addAnimation(scaleAnim, forKey: "layerScaleSpringAnimation")
         print("got here2")
+        
+        //A change
     
     }
     
