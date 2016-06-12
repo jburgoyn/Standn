@@ -101,8 +101,6 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
             weightSpinner.selectRow(weights[80], inComponent: 0, animated: false)
             userWeightKG = weightsKG[130]
             userWeight = weights[130]
-          
-            
         }
         
         // ** Conversion Settings on StartUp ** //
@@ -152,7 +150,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         } else {
             
             weightSpinner.selectRow(weights[80], inComponent: 0, animated: false)
-            weightLbl.text = "180"
+            weightLbl.text = "180 lb"
         }
         
         // ** Conversion Settings on StartUp ** //
@@ -401,6 +399,12 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         
     }
     
+    
+    @IBAction func startBtnPressed(sender: AnyObject) {
+        
+        performSegueWithIdentifier("toTimer", sender: nil)
+    }
+    
     // ** Tapped Functions ** //
     
     func hoursTap(gestureRecognizer: UIGestureRecognizer) {
@@ -494,7 +498,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         }
     }
     
-
+    @IBAction func returnHome(segue: UIStoryboardSegue) {}
     
     
 }

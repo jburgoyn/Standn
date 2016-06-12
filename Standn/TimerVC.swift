@@ -11,6 +11,7 @@ import UIKit
 class TimerVC: UIViewController {
     
     // Outlets
+    
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var stateLbl: UILabel!
     @IBOutlet weak var calorieCountLbl: UILabel!
@@ -18,8 +19,9 @@ class TimerVC: UIViewController {
     
     // Variables
     
-    var timerData = ["hours": Int(), "minutes": Int()]
-    var hours = Int()
+    var userHours = Int()
+    var userMinutes = Int()
+    var userWeight = Int()
     
     var staticStanding = Int()
     var staticSitting = Int()
@@ -36,32 +38,58 @@ class TimerVC: UIViewController {
     var notifications = [UILocalNotification]()
     
     var paused: Bool = false
+    var preference = NSUserDefaults.standardUserDefaults()
     
     var progress = KDCircularProgress()
     
     // Calorie Burn Variables
     var lifetimeCalories = 0.0
     var todayCalories = 0.0
-    var userWeight = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hours = timerData["hours"]!
-        minutesStanding = timerData["minutes"]!
+        if let hours = preference.objectForKey("userHours") as? Int {
+            
+            self.userHours = hours
+            
+        } else {
+            
+            self.userHours = 8
+        }
+        
+        if let minutes = preference.objectForKey("userMinutes") as? Int {
+            
+            self.userMinutes = minutes
+            
+        } else {
+            
+            self.userMinutes = 15
+        }
+        
+        if let weight = preference.objectForKey("userWeight") as? Int {
+            
+            self.userWeight = weight
+            
+        } else {
+            
+            self.userWeight = 180
+        }
+        
+        minutesStanding = userMinutes
         
         minutesSitting = 60 - minutesStanding
         timerLbl.text = String(minutesSitting)
         
         staticSitting = minutesSitting
         staticStanding = minutesStanding
-        endTime = startTime.dateByAddingTimeInterval(Double(hours) * 60)
+        endTime = startTime.dateByAddingTimeInterval(Double(userHours) * 60)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"startTimer", name:
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.startTimer), name:
             UIApplicationWillEnterForegroundNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"pauseTimerResign", name:
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.pauseTimerResign), name:
             UIApplicationWillResignActiveNotification, object: nil)
         
         createNotifications()
@@ -112,7 +140,6 @@ class TimerVC: UIViewController {
         
         // End the current schedule, invalidate the notifications, and return to home screen to reset schedule.
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-        timerData.removeAll()
         timer.invalidate()
         todayCalories = 0.0
         
@@ -129,7 +156,7 @@ class TimerVC: UIViewController {
     
     func startTimer(){
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(TimerVC.update), userInfo: nil, repeats: true)
         
     }
     
@@ -197,7 +224,7 @@ class TimerVC: UIViewController {
     
     func createNotifications() {
         
-        for cycle in 1 ... hours {
+        for cycle in 1 ... userHours {
             
             
             notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesSitting + ((cycle - 1) * minutesStanding))))

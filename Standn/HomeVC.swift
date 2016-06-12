@@ -78,7 +78,7 @@ class HomeVC: UIViewController {
                 
                 if let timerData = sender as? Dictionary<String, Int> {
                     
-                    detailVC.timerData = timerData
+//                    detailVC.timerData = timerData
                 }
             }
         }
