@@ -30,7 +30,7 @@ class CustomView: UIImageView {
         self.layer.pop_addAnimation(scaleAnim, forKey: "layerScaleSpringAnimation")
         print("got here2")
         
-        //A change
+        //A change has been made
     
     }
     
