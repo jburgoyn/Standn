@@ -1,5 +1,5 @@
 //
-//  SettingsVC.swift
+//  HomeVC.swift
 //  Standn
 //
 //  Created by Jonny B on 5/29/16.
@@ -9,7 +9,7 @@
 import UIKit
 import pop
 
-class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate {
+class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     
     // Outlets
@@ -33,6 +33,9 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
     @IBOutlet weak var standingImg: CustomView!
     @IBOutlet weak var scaleImg: CustomView!
     
+    @IBOutlet weak var lifeTimeCalLbl: UILabel!
+    
+    
     // Variables
     
     var weights = [Int]()
@@ -51,7 +54,10 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
     var hoursSpinnerHidden = true
     var minutesSpinnerHidden = true
     var weightSpinnerHidden = true
-
+    
+    var lifeTimeCalories: Int!
+    
+    
     
     // Functions
     
@@ -60,6 +66,8 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         super.viewDidLoad()
         createWeights()
         createWeightsKG()
+        expandSpinner()
+        
         
         weightSpinner.delegate = self
         weightSpinner.dataSource = self
@@ -68,105 +76,18 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         minutesSpinner.delegate = self
         minutesSpinner.dataSource = self
         
-        // ** Hours Settings on StartUp ** //
         
-        hoursSpinner.selectRow(7, inComponent: 0, animated: false)
-        
-        // ** Minutes Settings on StartUp ** //
-        
-        minutesSpinner.selectRow(2, inComponent: 0, animated: false)
-
-        
-        // ** Weight Settings on StartUp ** //
-        
-        if let weight = preference.objectForKey("userWeight") as? Int {
-            
-            if userConversion == "lb" {
-                
-                weightSpinner.selectRow(weights[weight - 50], inComponent: 0, animated: false)
-                userWeight = weight
-                userWeightKG = weight / 2
-                weightLbl.text = "\(weight) lb"
-                
-            } else if userConversion == "kg" {
-                
-                weightSpinner.selectRow(weightsKG[weight - 50], inComponent: 0, animated: false)
-                userWeightKG = weight / 2
-                userWeight = weight
-                weightLbl.text = "\(userWeightKG) kg"
-            }
-            
-        } else {
-            
-            weightSpinner.selectRow(weights[80], inComponent: 0, animated: false)
-            userWeightKG = weightsKG[130]
-            userWeight = weights[130]
-        }
-        
-        // ** Conversion Settings on StartUp ** //
-        
-        if let userConversion = preference.objectForKey("userConversion") as? String {
-            
-            self.userConversion = userConversion
-            
-        } else {
-            
-            self.userConversion = "lb"
-        }
-        
-        // ** Gesture Recognizers ** //
-        
-        // Hours Spinner Gestures
-        let hoursTap = UITapGestureRecognizer(target: self, action: #selector(SettingsVC.hoursTap(_:)))
-        hoursTap.delegate = self
-        self.hoursView.addGestureRecognizer(hoursTap)
-        hoursSpinner.hidden = true
-        
-        // Minutes Spinner Gestures
-        let minutesTap = UITapGestureRecognizer(target: self, action: #selector(SettingsVC.minutesTap(_:)))
-        minutesTap.delegate = self
-        self.minutesView.addGestureRecognizer(minutesTap)
-        minutesSpinner.hidden = true
-        
-        // Weight Spinner Gestures
-        let weightTap = UITapGestureRecognizer(target: self, action: #selector(SettingsVC.weightTap(_:)))
-        weightTap.delegate = self
-        self.weightView.addGestureRecognizer(weightTap)
-        weightSpinner.hidden = true
-
-        
+        assignVariables()
         
     }
     
     override func viewDidAppear(animated: Bool) {
         
-        // ** Weight Settings on StartUp ** //
-        
-        if let weight = preference.objectForKey("userWeight") as? Int {
-            
-            weightSpinner.selectRow(weights[weight - 100], inComponent: 0, animated: false)
-            weightLbl.text = "\(weight) lb"
-            
-        } else {
-            
-            weightSpinner.selectRow(weights[80], inComponent: 0, animated: false)
-            weightLbl.text = "180 lb"
-        }
-        
-        // ** Conversion Settings on StartUp ** //
-        
-        if let userConversion = preference.objectForKey("userConversion") as? String {
-            
-            self.userConversion = userConversion
-            
-        } else {
-            
-            self.userConversion = "lb"
-        }
+        assignVariables()
         
     }
     
-
+    
     
     @IBAction func backToHome(sender: AnyObject) {
         
@@ -266,7 +187,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
                     weightLbl.text = "\(userWeightKG) kg"
                     preference.setInteger(userWeight, forKey: "userWeight")
                     weightSpinner.reloadAllComponents()
-
+                    
                     
                 }
                 
@@ -279,8 +200,8 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
                 if userConversion == "lb" {
                     
                     weightLbl.text = "\(userWeight) lb"
-            
-
+                    
+                    
                 } else if userConversion == "kg" {
                     
                     weightLbl.text = "\(userWeightKG) kg"
@@ -315,11 +236,11 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
                 if userConversion == "lb" {
                     
                     return setPickerFontInt(weights, row: row)
-
+                    
                 } else if userConversion == "kg" {
                     
                     return setPickerFontInt(weightsKG, row: row)
-
+                    
                 }
                 
             } else if component == 1 {
@@ -327,11 +248,11 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
                 if userConversion == "lb" {
                     
                     return setPickerFont(conversion, row: row)
-
+                    
                 } else if userConversion == "kg" {
                     
                     return setPickerFont(conversion, row: row)
-
+                    
                 }
                 
             }
@@ -341,13 +262,13 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
             return setPickerFont(minutes, row: row)
             
         } else if pickerView == hoursSpinner {
-        
+            
             return setPickerFont(hours, row: row)
             
         }
         
         return UIView()
-       
+        
     }
     
     func setPickerFont(pickerData: [String], row: Int) -> UILabel{
@@ -402,6 +323,13 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
     
     @IBAction func startBtnPressed(sender: AnyObject) {
         
+        self.weightSpinner.hidden = true
+        self.weightSpinnerHidden = true
+        self.minutesSpinner.hidden = true
+        self.minutesSpinnerHidden = true
+        self.hoursSpinner.hidden = true
+        self.hoursSpinnerHidden = true
+        
         performSegueWithIdentifier("toTimer", sender: nil)
     }
     
@@ -413,15 +341,59 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
             
             self.timerImg.scaleAnimation()
             
-            UIView.animateWithDuration(0.35) { [unowned self] in
+            if weightSpinnerHidden == false {
                 
-                self.hoursSpinner.alpha = 1
-                self.hoursSpinner.hidden = false
-                self.hoursSpinnerHidden = false
-                self.hoursSpinnerBottomBorder.hidden = false
+                self.weightSpinner.hidden = true
                 
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.weightSpinnerHidden = true
+                    self.weightSpinnerBottomBorder.hidden = true
+                }
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.hoursSpinner.alpha = 1
+                    self.hoursSpinner.hidden = false
+                    self.hoursSpinnerHidden = false
+                    self.hoursSpinnerBottomBorder.hidden = false
+                    
+                }
+                
+            } else if minutesSpinner.hidden == false {
+                
+                self.minutesSpinner.hidden = true
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.minutesSpinnerHidden = true
+                    self.minutesSpinnerBottomBorder.hidden = true
+                }
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.hoursSpinner.alpha = 1
+                    self.hoursSpinner.hidden = false
+                    self.hoursSpinnerHidden = false
+                    self.hoursSpinnerBottomBorder.hidden = false
+                    
+                }
+
+            } else if weightSpinner.hidden == true {
+                
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.hoursSpinner.alpha = 1
+                    self.hoursSpinner.hidden = false
+                    self.hoursSpinnerHidden = false
+                    self.hoursSpinnerBottomBorder.hidden = false
+                    
+                }
                 
             }
+            
+            
             
         } else if hoursSpinnerHidden == false {
             
@@ -443,25 +415,68 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         if minutesSpinnerHidden == true {
             
             self.standingImg.scaleAnimation()
-
             
-            UIView.animateWithDuration(0.35) { [unowned self] in
+            if weightSpinnerHidden == false {
                 
-                self.minutesSpinner.hidden = false
-                self.minutesSpinnerHidden = false
-                self.minutesSpinnerBottomBorder.hidden = false
-
+                self.weightSpinner.hidden = true
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.weightSpinnerHidden = true
+                    self.weightSpinnerBottomBorder.hidden = true
+                }
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.minutesSpinner.alpha = 1
+                    self.minutesSpinner.hidden = false
+                    self.minutesSpinnerHidden = false
+                    self.minutesSpinnerBottomBorder.hidden = false
+                    
+                }
+                
+            } else if hoursSpinner.hidden == false {
+                
+                self.hoursSpinner.hidden = true
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.hoursSpinnerHidden = true
+                    self.hoursSpinnerBottomBorder.hidden = true
+                }
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.minutesSpinner.alpha = 1
+                    self.minutesSpinner.hidden = false
+                    self.minutesSpinnerHidden = false
+                    self.minutesSpinnerBottomBorder.hidden = false
+                    
+                }
+                
+            } else if minutesSpinner.hidden == true {
+                
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.minutesSpinner.alpha = 1
+                    self.minutesSpinner.hidden = false
+                    self.minutesSpinnerHidden = false
+                    self.minutesSpinnerBottomBorder.hidden = false
+                    
+                }
+                
             }
             
         } else if minutesSpinnerHidden == false {
-
+            
             self.minutesSpinner.hidden = true
-
+            
             UIView.animateWithDuration(0.35) { [unowned self] in
                 
                 self.minutesSpinnerHidden = true
                 self.minutesSpinnerBottomBorder.hidden = true
-
+                
                 
             }
         }
@@ -473,19 +488,62 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
             
             self.scaleImg.scaleAnimation()
             
-            UIView.animateWithDuration(0.35) { [unowned self] in
+            if minutesSpinner.hidden == false {
                 
-                self.weightSpinner.alpha = 1
-                self.weightSpinner.hidden = false
-                self.weightSpinnerHidden = false
-                self.weightSpinnerBottomBorder.hidden = false
+                self.minutesSpinner.hidden = true
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.minutesSpinnerHidden = true
+                    self.minutesSpinnerBottomBorder.hidden = true
+                }
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.weightSpinner.alpha = 1
+                    self.weightSpinner.hidden = false
+                    self.weightSpinnerHidden = false
+                    self.weightSpinnerBottomBorder.hidden = false
+                    
+                }
+                
+            } else if hoursSpinner.hidden == false {
+                
+                self.hoursSpinner.hidden = true
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.hoursSpinnerHidden = true
+                    self.hoursSpinnerBottomBorder.hidden = true
+                }
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.weightSpinner.alpha = 1
+                    self.weightSpinner.hidden = false
+                    self.weightSpinnerHidden = false
+                    self.weightSpinnerBottomBorder.hidden = false
+                    
+                }
+                
+            } else if weightSpinner.hidden == true {
+                
+                
+                UIView.animateWithDuration(0.35) { [unowned self] in
+                    
+                    self.weightSpinner.alpha = 1
+                    self.weightSpinner.hidden = false
+                    self.weightSpinnerHidden = false
+                    self.weightSpinnerBottomBorder.hidden = false
+                    
+                }
                 
             }
-            
+        
         } else if weightSpinnerHidden == false {
             
             self.weightSpinner.hidden = true
-
+            
             
             UIView.animateWithDuration(0.35) { [unowned self] in
                 
@@ -498,7 +556,85 @@ class SettingsVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource,
         }
     }
     
-    @IBAction func returnHome(segue: UIStoryboardSegue) {}
+    func expandSpinner() {
+        
+        let weightTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.weightTap(_:)))
+        weightTap.delegate = self
+        self.weightView.addGestureRecognizer(weightTap)
+        weightSpinner.hidden = true
+        
+        let hoursTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.hoursTap(_:)))
+        hoursTap.delegate = self
+        self.hoursView.addGestureRecognizer(hoursTap)
+        hoursSpinner.hidden = true
+        
+        let minutesTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.minutesTap(_:)))
+        minutesTap.delegate = self
+        self.minutesView.addGestureRecognizer(minutesTap)
+        minutesSpinner.hidden = true
+        
+    }
+    
+    func assignVariables() {
+        
+        if let weight = preference.objectForKey("userWeight") as? Int {
+            
+            if userConversion == "lb" {
+                
+                weightSpinner.selectRow(weights[weight - 100], inComponent: 0, animated: false)
+                userWeight = weight
+                userWeightKG = weight / 2
+                weightLbl.text = "\(weight) lb"
+                
+            } else if userConversion == "kg" {
+                
+                weightSpinner.selectRow(weightsKG[weight - 100], inComponent: 0, animated: false)
+                userWeightKG = weight / 2
+                userWeight = weight
+                weightLbl.text = "\(userWeightKG) kg"
+            }
+            
+        } else {
+            
+            weightSpinner.selectRow(weights[80], inComponent: 0, animated: false)
+            userWeightKG = weightsKG[130]
+            userWeight = weights[130]
+            weightLbl.text = "\(userWeight) lb"
+        }
+        
+        // ** Conversion Settings on StartUp ** //
+        
+        if let userConversion = preference.objectForKey("userConversion") as? String {
+            
+            self.userConversion = userConversion
+            
+        } else {
+            
+            self.userConversion = "lb"
+        }
+        
+        // ** Hours Settings on StartUp ** //
+        
+        hoursSpinner.selectRow(7, inComponent: 0, animated: false)
+        
+        // ** Minutes Settings on StartUp ** //
+        
+        minutesSpinner.selectRow(2, inComponent: 0, animated: false)
+        
+        // LifetimeCalories on Appear //
+        
+        if let lifeTimeCalories = preference.objectForKey("lifeTimeCalories") as? Int {
+            
+            self.lifeTimeCalories = lifeTimeCalories
+            
+        } else {
+            
+            self.lifeTimeCalories = 0
+        }
+        
+        self.lifeTimeCalLbl.text = "Since using Standn, you have burned an extra \(lifeTimeCalories) calories!"
+        
+    }
     
     
 }
