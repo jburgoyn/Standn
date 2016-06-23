@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B2EA74F3CB9E65772374DBB4 /* Pods_Standn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3416F73FEF24D112E21AC1 /* Pods_Standn.framework */; };
 		F905E7401CF14FB90082661D /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F905E73F1CF14FB90082661D /* KDCircularProgress.swift */; };
+		F90DAE851D1A5D0A004DB49C /* EducationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90DAE841D1A5D0A004DB49C /* EducationVC.swift */; };
 		F937D3E41D15E21700333A5C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F937D3E31D15E21700333A5C /* Timer.swift */; };
 		F937D3E61D15E2D700333A5C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F937D3E51D15E2D700333A5C /* User.swift */; };
 		F96C51841CE30699001C14F0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C51831CE30699001C14F0 /* CustomButton.swift */; };
@@ -26,6 +27,7 @@
 		145301C0EA96563155BB5794 /* Pods-Standn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Standn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Standn/Pods-Standn.debug.xcconfig"; sourceTree = "<group>"; };
 		68E44BF1ED969094152CFE90 /* Pods-Standn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Standn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Standn/Pods-Standn.release.xcconfig"; sourceTree = "<group>"; };
 		F905E73F1CF14FB90082661D /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
+		F90DAE841D1A5D0A004DB49C /* EducationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationVC.swift; sourceTree = "<group>"; };
 		F937D3E31D15E21700333A5C /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		F937D3E51D15E2D700333A5C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F96C51831CE30699001C14F0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				F9A653791CE2F6D800D52B0B /* AppDelegate.swift */,
 				F9DA846B1CFB54EC00FD8E44 /* HomeVC.swift */,
 				F96C51851CE45028001C14F0 /* TimerVC.swift */,
+				F90DAE841D1A5D0A004DB49C /* EducationVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				F905E7401CF14FB90082661D /* KDCircularProgress.swift in Sources */,
 				F9A6537A1CE2F6D800D52B0B /* AppDelegate.swift in Sources */,
 				F937D3E41D15E21700333A5C /* Timer.swift in Sources */,
+				F90DAE851D1A5D0A004DB49C /* EducationVC.swift in Sources */,
 				F9F610BF1D0BDF9200069792 /* CustomView.swift in Sources */,
 				F937D3E61D15E2D700333A5C /* User.swift in Sources */,
 				F96C51861CE45028001C14F0 /* TimerVC.swift in Sources */,

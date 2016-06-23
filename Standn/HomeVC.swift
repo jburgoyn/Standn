@@ -636,5 +636,9 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         
     }
     
+    @IBAction func whyStandBtnPressed(sender: AnyObject) {
+        
+        performSegueWithIdentifier("toEducation", sender: nil)
+    }
     
 }

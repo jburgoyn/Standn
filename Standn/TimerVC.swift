@@ -19,10 +19,6 @@ class TimerVC: UIViewController {
     
     // Variables
     
-//    var userHours = Int()
-//    var userMinutes = Int()
-//    var userWeight = Int()
-    
     var staticStanding = Int()
     var staticSitting = Int()
     
@@ -35,16 +31,11 @@ class TimerVC: UIViewController {
     var currentTime: NSDate!
     
     var notificationTimes = [NSDate]()
-    //var notifications = [UILocalNotification]()     not currently used
     
     var paused: Bool = false
     var preference = NSUserDefaults.standardUserDefaults()
     
     var progress = KDCircularProgress()
-    
-    // Calorie Burn Variables
-//    var lifetimeCalories = 0.0
-//    var todayCalories = 0.0
     
     let user = User()
     
@@ -53,9 +44,6 @@ class TimerVC: UIViewController {
         
         
         user.retrieveUserSettings()
-//        minutesStanding = user.userMinutes
-//        
-//        minutesSitting = 60 - minutesStanding
         timerLbl.text = String(minutesSitting)
         
         staticSitting = user.minutesSitting
@@ -220,108 +208,5 @@ class TimerVC: UIViewController {
             }
         }
     }
-    
-//    func createNotifications() {
-//        
-//        for cycle in 1 ... user.userHours {
-//            
-//            
-//            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesSitting + ((cycle - 1) * minutesStanding))))
-//            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesStanding + cycle * minutesSitting)))
-//            
-//        }
-//        
-//        for cycle in 0 ..< notificationTimes.count {
-//            
-//            if cycle % 2 == 0 {
-//                
-//                let notification = UILocalNotification()
-//                
-//                notification.alertBody = "Time to get moving! Start standing."
-//                notification.soundName = UILocalNotificationDefaultSoundName
-//                notification.fireDate = notificationTimes[cycle]
-//                
-//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//                
-//            } else if cycle == (notificationTimes.count-1) {
-//               
-//                let notification = UILocalNotification()
-//                
-//                notification.alertBody = "You have finished working for now! Check how many calories you've bruned!"
-//                notification.soundName = UILocalNotificationDefaultSoundName
-//                notification.fireDate = notificationTimes[cycle]
-//                
-//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//
-//                
-//            } else {
-//                
-//                let notification = UILocalNotification()
-//                
-//                notification.alertBody = "Way to go! You may sit back down."
-//                notification.soundName = UILocalNotificationDefaultSoundName
-//                notification.fireDate = notificationTimes[cycle]
-//                
-//                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//            }
-//            
-//        }
-//        
-//    }
-    
-//    func calculateCalorieBurn(weight: Int) {
-//        
-//        // need to address if leave app, then needs to know how long been out of app and whether or not sitting or standing so it can update.
-//        
-//        
-//        let caloriesBurnedPerMinute = (Double(weight) * 0.0053) + 0.0058
-//        todayCalories += caloriesBurnedPerMinute
-//        lifetimeCalories += caloriesBurnedPerMinute
-//        print(Int(todayCalories))
-//        print(weight)
-//        
-//        calorieCountLbl.text = String(Int(todayCalories))
-//        
-//    }
-    
-//    func retrieveUserSettings() {
-//        
-//        if let hours = preference.objectForKey("userHours") as? Int {
-//            
-//            self.userHours = hours
-//            
-//        } else {
-//            
-//            self.userHours = 8
-//        }
-//        
-//        if let minutes = preference.objectForKey("userMinutes") as? Int {
-//            
-//            self.userMinutes = minutes
-//            
-//        } else {
-//            
-//            self.userMinutes = 15
-//        }
-//        
-//        if let weight = preference.objectForKey("userWeight") as? Int {
-//            
-//            self.userWeight = weight
-//            
-//        } else {
-//            
-//            self.userWeight = 180
-//        }
-//        
-//        if let weight = NSUserDefaults.standardUserDefaults().objectForKey("userWeight") as? Int {
-//            
-//            self.userWeight = weight
-//            
-//        } else {
-//            
-//            self.userWeight = 180
-//        }
-//        
-//    }
     
 }
