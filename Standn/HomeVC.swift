@@ -584,11 +584,11 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
                 weightSpinner.selectRow(weights[weight - 100], inComponent: 0, animated: false)
                 userWeight = weight
                 userWeightKG = weight / 2
-                weightLbl.text = "\(weight) lb"
+                weightLbl.text = "\(userWeight) lb"
                 
             } else if userConversion == "kg" {
                 
-                weightSpinner.selectRow(weightsKG[weight - 100], inComponent: 0, animated: false)
+                weightSpinner.selectRow(weights[weight - 100], inComponent: 0, animated: false)
                 userWeightKG = weight / 2
                 userWeight = weight
                 weightLbl.text = "\(userWeightKG) kg"
@@ -597,7 +597,6 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         } else {
             
             weightSpinner.selectRow(weights[80], inComponent: 0, animated: false)
-            userWeightKG = weightsKG[130]
             userWeight = weights[130]
             weightLbl.text = "\(userWeight) lb"
         }

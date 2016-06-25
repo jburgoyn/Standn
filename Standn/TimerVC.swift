@@ -26,7 +26,7 @@ class TimerVC: UIViewController {
     var minutesStanding = Int()
     var timer = NSTimer()
     
-    var startTime = NSDate()
+    let startTime = NSDate()
     var endTime: NSDate!
     var currentTime: NSDate!
     
@@ -44,12 +44,11 @@ class TimerVC: UIViewController {
         
         
         user.retrieveUserSettings()
-        timerLbl.text = String(minutesSitting)
+        timerLbl.text = String(user.minutesSitting)
         
         staticSitting = user.minutesSitting
         staticStanding = user.minutesStanding
-        endTime = startTime.dateByAddingTimeInterval(Double(user.userHours) * 60)
-        
+        endTime = startTime.dateByAddingTimeInterval(Double(user.userHours) * 60 * 60)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.startTimer), name:
             UIApplicationWillEnterForegroundNotification, object: nil)
@@ -134,7 +133,7 @@ class TimerVC: UIViewController {
     
     func startTimer(){
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(TimerVC.update), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(TimerVC.update), userInfo: nil, repeats: true)
         
     }
     
@@ -146,12 +145,13 @@ class TimerVC: UIViewController {
         print("\(timeElapsed) seconds have passed since beginning schedule")
         
         let calendar = NSCalendar.currentCalendar()
-        let startTimeSecond = calendar.component(.Second, fromDate: startTime)
-        let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
+        let startTimeSecond = calendar.component(.Minute, fromDate: startTime)
+        let currentTimeSecond = calendar.component(.Minute, fromDate: currentTime)
         
         
         print("\(startTimeSecond) start time seconds")
         print("\(currentTimeSecond) current time seconds")
+        print("timeElapsed = \(timeElapsed)")
         
         if endTime.timeIntervalSinceNow.isSignMinus {
             

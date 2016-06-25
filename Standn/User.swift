@@ -36,7 +36,7 @@ class User {
         // need to address if leave app, then needs to know how long been out of app and whether or not sitting or standing so it can update.
         
         
-        let timeSinceStart = currentTime.timeIntervalSinceDate(startTime)
+        let timeSinceStart = currentTime.timeIntervalSinceDate(startTime) / 60
         let whole = Double(timeSinceStart/60)
         let remainder = Double(timeSinceStart % 60)
         
@@ -137,8 +137,8 @@ class User {
         for cycle in 1 ... self.userHours {
             
             
-            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesSitting + ((cycle - 1) * minutesStanding))))
-            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(cycle * minutesStanding + cycle * minutesSitting)))
+            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(60 * (cycle * minutesSitting + ((cycle - 1) * minutesStanding)))))
+            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(60 * (cycle * minutesStanding + cycle * minutesSitting))))
             
         }
         
