@@ -26,7 +26,7 @@ class TimerVC: UIViewController {
     var minutesStanding = Int()
     var timer = NSTimer()
     
-    let startTime = NSDate()
+    var startTime = NSDate()
     var endTime: NSDate!
     var currentTime: NSDate!
     
@@ -133,6 +133,7 @@ class TimerVC: UIViewController {
     
     func startTimer(){
         
+        print("got here from")
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(TimerVC.update), userInfo: nil, repeats: true)
         
     }
