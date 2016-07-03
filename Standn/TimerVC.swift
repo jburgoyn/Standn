@@ -32,7 +32,7 @@ class TimerVC: UIViewController {
     
     var notificationTimes = [NSDate]()
     
-    var paused: Bool = false
+//    var paused: Bool = false
     var preference = NSUserDefaults.standardUserDefaults()
     
     var progress = KDCircularProgress()
@@ -50,11 +50,10 @@ class TimerVC: UIViewController {
         staticStanding = user.minutesStanding
         endTime = startTime.dateByAddingTimeInterval(Double(user.userHours) * 60 * 60)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.startTimer), name:
-            UIApplicationWillEnterForegroundNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.pauseTimerResign), name:
-            UIApplicationWillResignActiveNotification, object: nil)
+        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.pauseTimerResign), name:
+//            UIApplicationWillResignActiveNotification, object: nil)
         
         
         user.createNotifications()
@@ -65,6 +64,10 @@ class TimerVC: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.startTimer), name:
+//            UIApplicationWillEnterForegroundNotification, object: nil)
+        
+        startTimer()
     }
     
     func createCircularProgress() {
@@ -83,21 +86,21 @@ class TimerVC: UIViewController {
         view.addSubview(progress)
     }
     
-    @IBAction func pauseTimer(sender: AnyObject) {
-        
-        if paused == false {
-            
-            timer.invalidate()
-            paused = true
-            pauseButton.setTitle("Resume", forState: .Normal)
-            
-        } else {
-            
-            startTimer()
-            paused = false
-            pauseButton.setTitle("Pause", forState: .Normal)
-        }
-    }
+//    @IBAction func pauseTimer(sender: AnyObject) {
+//        
+//        if paused == false {
+//            
+//            timer.invalidate()
+//            paused = true
+//            pauseButton.setTitle("Resume", forState: .Normal)
+//            
+//        } else {
+//            
+//            startTimer()
+//            paused = false
+//            pauseButton.setTitle("Pause", forState: .Normal)
+//        }
+//    }
     
     @IBAction func endSchedule(sender: AnyObject) {
         
@@ -133,8 +136,7 @@ class TimerVC: UIViewController {
     
     func startTimer(){
         
-        print("got here from")
-        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(TimerVC.update), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(TimerVC.update), userInfo: nil, repeats: true)
         
     }
     
@@ -154,60 +156,73 @@ class TimerVC: UIViewController {
         print("\(currentTimeSecond) current time seconds")
         print("timeElapsed = \(timeElapsed)")
         
-        if endTime.timeIntervalSinceNow.isSignMinus {
+        
+        if currentTimeSecond - startTimeSecond > 0 {
             
-            print("Schedule Complete")
-            timerLbl.text = "0"
-            progress.angle = 0
-            timer.invalidate()
-            
-        } else {
-            
-            if (currentTimeSecond - startTimeSecond) > 0 {
+            if endTime.timeIntervalSinceNow.isSignMinus {
                 
-                print("Greater than zero")
+                print("Schedule Complete")
+                timerLbl.text = "0"
+                progress.angle = 0
+                timer.invalidate()
+                user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
                 
-                if (currentTimeSecond - startTimeSecond) <= staticSitting {
+                
+            } else {
+                
+                if (currentTimeSecond - startTimeSecond) > 0 {
                     
-                    stateLbl.text = "Sitting"
-                    minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
-                    timerLbl.text = String(minutesSitting)
-                    progress.angle = Double(minutesSitting*(360/staticSitting))
+                    print("Greater than zero")
                     
+                    if (currentTimeSecond - startTimeSecond) <= staticSitting {
+                        
+                        stateLbl.text = "Sitting"
+                        minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
+                        timerLbl.text = String(minutesSitting)
+                        progress.angle = Double(minutesSitting*(360/staticSitting))
+                        
+                        
+                    } else if (currentTimeSecond - startTimeSecond) > staticSitting {
+                        
+                        stateLbl.text = "Standing"
+                        minutesStanding = startTimeSecond - currentTimeSecond + 60
+                        timerLbl.text = String(minutesStanding)
+                        print(minutesStanding)
+                        progress.angle = Double(minutesStanding*(360/staticStanding))
+                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        print("This is where the problem is")
+                        
+                        
+                    }
                     
-                } else if (currentTimeSecond - startTimeSecond) > staticSitting {
+                } else if (currentTimeSecond - startTimeSecond) <= 0 {
                     
-                    stateLbl.text = "Standing"
-                    minutesStanding = startTimeSecond - currentTimeSecond + 60
-                    timerLbl.text = String(minutesStanding)
-                    print(minutesStanding)
-                    progress.angle = Double(minutesStanding*(360/staticStanding))
-                    user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                    print("Less than zero")
                     
+                    if (currentTimeSecond - startTimeSecond + 60) <= staticSitting {
+                        
+                        stateLbl.text = "Sitting"
+                        minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
+                        timerLbl.text = String(minutesSitting)
+                        progress.angle = Double(minutesSitting*(360/staticSitting))
+                        
+                        
+                    } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
+                        
+                        stateLbl.text = "Standing"
+                        minutesStanding = startTimeSecond - currentTimeSecond
+                        timerLbl.text = String(minutesStanding)
+                        progress.angle = Double(minutesStanding*(360/staticStanding))
+                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        print("This is where the problem is")
+                        
+                        
+                    }
                 }
-                
-            } else if (currentTimeSecond - startTimeSecond) <= 0 {
-                
-                print("Less than zero")
-                
-                if (currentTimeSecond - startTimeSecond + 60) <= staticSitting {
-                    
-                    stateLbl.text = "Sitting"
-                    minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
-                    timerLbl.text = String(minutesSitting)
-                    progress.angle = Double(minutesSitting*(360/staticSitting))
-                    
-                } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
-                    
-                    stateLbl.text = "Standing"
-                    minutesStanding = startTimeSecond - currentTimeSecond
-                    timerLbl.text = String(minutesStanding)
-                    progress.angle = Double(minutesStanding*(360/staticStanding))
-                    user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                
-                }
-            }
+            } // End
+            
         }
+        
     }
     
 }
