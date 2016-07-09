@@ -18,24 +18,15 @@ class TimerVC: UIViewController {
     @IBOutlet weak var pauseButton: CustomButton!
     
     @IBOutlet weak var debugLabel: UILabel!
+    
     // Variables
     
-    var staticStanding = Int()
-    var staticSitting = Int()
-    
-    var minutesSitting = Int()
-    var minutesStanding = Int()
     var timer = NSTimer()
-    
     var startTime = NSDate()
     var endTime: NSDate!
-    var currentTime: NSDate!
     
     var notificationTimes = [NSDate]()
-    
-//    var paused: Bool = false
     var preference = NSUserDefaults.standardUserDefaults()
-    
     var progress = KDCircularProgress()
     
     let user = User()
@@ -43,29 +34,20 @@ class TimerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         user.retrieveUserSettings()
         timerLbl.text = String(user.minutesSitting)
-        
-        staticSitting = user.minutesSitting
-        staticStanding = user.minutesStanding
-        endTime = startTime.dateByAddingTimeInterval(Double(user.userHours) * 60 * 60)
-        
-        
+        endTime = startTime.dateByAddingTimeInterval(Double(user.userHours) * 3600)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(pauseTimerResign), name:
             UIApplicationWillResignActiveNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(startTimer), name:
             UIApplicationDidBecomeActiveNotification, object: nil)
         
-        
         user.createNotifications()
         createCircularProgress()
         startTimer()
         
     }
-    
-
     
     func createCircularProgress() {
         
@@ -85,21 +67,8 @@ class TimerVC: UIViewController {
     
     @IBAction func pauseTimer(sender: AnyObject) {
         
-        
         timer.invalidate()
         
-//        if paused == false {
-//            
-//            timer.invalidate()
-//            paused = true
-//            pauseButton.setTitle("Resume", forState: .Normal)
-//            
-//        } else {
-//            
-//            startTimer()
-//            paused = false
-//            pauseButton.setTitle("Pause", forState: .Normal)
-//        }
     }
     
     @IBAction func endSchedule(sender: AnyObject) {
@@ -119,9 +88,7 @@ class TimerVC: UIViewController {
         
         user.lifetimeCalories += user.sessionCalories
         preference.setObject(user.lifetimeCalories, forKey: "lifeTimeCalories")
-        
         user.sessionCalories = 0
-        
         dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -142,95 +109,42 @@ class TimerVC: UIViewController {
     
     func update() {
         
-        print("****************")
-        currentTime = NSDate()
-        let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
-        print("\(timeElapsed) seconds have passed since beginning schedule")
-        
-        let calendar = NSCalendar.currentCalendar()
-        let startTimeSecond = calendar.component(.Minute, fromDate: startTime)
-        let currentTimeSecond = calendar.component(.Minute, fromDate: currentTime)
-        
-        
-        print("\(startTimeSecond) start time seconds")
-        print("\(currentTimeSecond) current time seconds")
-        print("timeElapsed = \(timeElapsed)")
-        
-        
-        
-        if currentTimeSecond - startTimeSecond > 0 {
+        let state = user.update(startTime, endTime: endTime, timerLbl: timerLbl, timer: timer, debugLabel: debugLabel, stateLbl: stateLbl, calorieLbl: calorieCountLbl)
+       
+        switch state {
             
-            if endTime.timeIntervalSinceNow.isSignMinus {
-                
-                print("Schedule Complete")
-                timerLbl.text = "0"
-                progress.angle = 0
-                user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                timer.invalidate()
-                
-                debugLabel.text = "Schedule Complete."
+        case "SittingPositive":
+            
+            progress.angle = Double(user.minutesSitting*(360/user.staticSitting))
+            print("Sitting")
+            
+        case "StandingPositive":
+            
+            progress.angle = Double(user.minutesStanding*(360/user.staticStanding))
+            print("Standing")
+            
+       case "SittingNegative":
+        
+            progress.angle = Double(user.minutesSitting*(360/user.staticSitting))
+            print("Sitting")
+            
+        case "StandingNegative":
+            
+            progress.angle = Double(user.minutesStanding*(360/user.staticStanding))
+            print("STanding")
+         
+        case "Spooling":
+            
+            print("Spooling")
+            
+        case "ScheduleOver":
+            
+            progress.angle = 0
 
-                
-            } else {
-                
-                if (currentTimeSecond - startTimeSecond) > 0 {
-                    
-                    print("Greater than zero")
-                    
-                    if (currentTimeSecond - startTimeSecond) <= staticSitting {
-                        
-                        stateLbl.text = "Sitting"
-                        minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
-                        timerLbl.text = String(minutesSitting)
-                        progress.angle = Double(minutesSitting*(360/staticSitting))
-                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        
-                        debugLabel.text = "\(timeElapsed)"
-                        
-                        
-                    } else if (currentTimeSecond - startTimeSecond) > staticSitting {
-                        
-                        stateLbl.text = "Standing"
-                        minutesStanding = startTimeSecond - currentTimeSecond + 60
-                        timerLbl.text = String(minutesStanding)
-                        print(minutesStanding)
-                        progress.angle = Double(minutesStanding*(360/staticStanding))
-                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        print("This is where the problem is")
-                        debugLabel.text = "\(timeElapsed)"
-                        
-                        
-                    }
-                    
-                } else if (currentTimeSecond - startTimeSecond) <= 0 {
-                    
-                    print("Less than zero")
-                    
-                    if (currentTimeSecond - startTimeSecond + 60) <= staticSitting {
-                        
-                        stateLbl.text = "Sitting"
-                        minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
-                        timerLbl.text = String(minutesSitting)
-                        progress.angle = Double(minutesSitting*(360/staticSitting))
-                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        debugLabel.text = "\(timeElapsed)"
-                        
-                        
-                    } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
-                        
-                        stateLbl.text = "Standing"
-                        minutesStanding = startTimeSecond - currentTimeSecond
-                        timerLbl.text = String(minutesStanding)
-                        progress.angle = Double(minutesStanding*(360/staticStanding))
-                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        print("This is where the problem is")
-                        debugLabel.text = "\(timeElapsed)"
-                        
-                        
-                    }
-                }
-            } // End
+        default:
             
+            print("No State")
+         
         }
         
     }

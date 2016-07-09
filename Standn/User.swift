@@ -19,6 +19,8 @@ class User {
     var lifetimeCalories = 0
     var minutesSitting: Int!
     var minutesStanding: Int!
+    var staticSitting: Int!
+    var staticStanding: Int!
     var notificationTimes = [NSDate]()
     
     
@@ -28,13 +30,104 @@ class User {
     
     init() {
         
-        
     }
     
+    func update(startTime: NSDate, endTime: NSDate, timerLbl: UILabel, timer: NSTimer, debugLabel: UILabel, stateLbl: UILabel, calorieLbl: UILabel) -> String {
+        
+        print("****************")
+        let currentTime = NSDate()
+        let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
+        print("\(timeElapsed) seconds have passed since beginning schedule")
+        
+        let calendar = NSCalendar.currentCalendar()
+        let startTimeMinute = calendar.component(.Minute, fromDate: startTime)
+        let currentTimeMinute = calendar.component(.Minute, fromDate: currentTime)
+        
+        
+        print("\(startTimeMinute) start time seconds")
+        print("\(currentTimeMinute) current time seconds")
+        print("timeElapsed = \(timeElapsed)")
+        
+        
+        
+        if currentTimeMinute - startTimeMinute > 0 {
+            
+            if endTime.timeIntervalSinceNow.isSignMinus {
+                
+                print("Schedule Complete")
+                timerLbl.text = "0"
+                timer.invalidate()
+                
+                debugLabel.text = "Schedule Complete."
+                return "ScheduleOver"
+                
+                
+            } else {
+                
+                if (currentTimeMinute - startTimeMinute) > 0 {
+                    
+                    print("Greater than zero")
+                    
+                    if (currentTimeMinute - startTimeMinute) <= staticSitting {
+                        
+                        stateLbl.text = "Sitting"
+                        minutesSitting = staticSitting - (currentTimeMinute - startTimeMinute)
+                        timerLbl.text = String(minutesSitting)
+                        self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        
+                        debugLabel.text = "\(timeElapsed)"
+                        
+                        return "SittingPositive"
+                        
+                        
+                    } else if (currentTimeMinute - startTimeMinute) > staticSitting {
+                        
+                        stateLbl.text = "Standing"
+                        minutesStanding = startTimeMinute - currentTimeMinute + 60
+                        timerLbl.text = String(minutesStanding)
+                        self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        debugLabel.text = "\(timeElapsed)"
+                        
+                        return "StandingPositive"
+                        
+                        
+                    }
+                    
+                } else if (currentTimeMinute - startTimeMinute) <= 0 {
+                    
+                    print("Less than zero")
+                    
+                    if (currentTimeMinute - startTimeMinute + 60) <= staticSitting {
+                        
+                        stateLbl.text = "Sitting"
+                        minutesSitting = staticSitting - (currentTimeMinute + 60 - startTimeMinute)
+                        timerLbl.text = String(minutesSitting)
+                        self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        debugLabel.text = "\(timeElapsed)"
+                        
+                        return "SittingNegative"
+                        
+                        
+                    } else if (currentTimeMinute - startTimeMinute + 60) > staticSitting {
+                        
+                        stateLbl.text = "Standing"
+                        minutesStanding = startTimeMinute - currentTimeMinute
+                        timerLbl.text = String(minutesStanding)
+                        self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        debugLabel.text = "\(timeElapsed)"
+                        
+                        return "StandingNegative"
+
+                    }
+                }
+            }
+        }
+        
+        return "Spooling"
+    }
+    
+    
     func calculateCalorieBurn(weight: Int, calorieLbl: UILabel, startTime: NSDate, endTime: NSDate, currentTime: NSDate) {
-        
-        // need to address if leave app, then needs to know how long been out of app and whether or not sitting or standing so it can update.
-        
         
         let timeSinceStart = currentTime.timeIntervalSinceDate(startTime) / 60
         let whole = Double(timeSinceStart/60)
@@ -50,40 +143,40 @@ class User {
         if Int(whole) > 0 {
             
             print("got here 0")
-            if Int(remainder) < (60 - minutesStanding) {
+            if Int(remainder) < (60 - staticStanding) {
                 
                 print("got here 1")
-                sessionCalories = Int(caloriesBurnedPerMinute * whole * Double(minutesStanding))
-
-            } else if Int(remainder) > (60 - minutesStanding) {
+                sessionCalories = Int(caloriesBurnedPerMinute * whole * Double(staticStanding))
+                
+            } else if Int(remainder) > (60 - staticStanding) {
                 
                 print("got here 2")
-                sessionCalories = Int(caloriesBurnedPerMinute * whole * Double(minutesStanding) + caloriesBurnedPerMinute * (remainder - Double(minutesSitting)))
+                sessionCalories = Int(caloriesBurnedPerMinute * whole * Double(staticStanding) + caloriesBurnedPerMinute * (remainder - Double(staticSitting)))
             }
             
         } else {
             
-            if Int(remainder) < (60 - minutesStanding) {
+            if Int(remainder) < (60 - staticStanding) {
                 
                 print("got here 3")
                 sessionCalories = 0
                 
-            } else if Int(remainder) > (60 - minutesStanding) {
+            } else if Int(remainder) > (60 - staticStanding) {
                 
                 print("got here 4")
-                sessionCalories = Int(caloriesBurnedPerMinute * (remainder - Double(minutesSitting)))
+                sessionCalories = Int(caloriesBurnedPerMinute * (remainder - Double(staticSitting)))
                 print("Session Cals\(sessionCalories)")
             }
             
         }
         
-    
+        
         //sessionCalories += caloriesBurnedPerMinute
         //lifetimeCalories += caloriesBurnedPerMinute
         
         print("Session Cals\(sessionCalories)")
         print(weight)
-
+        
         calorieLbl.text = String(sessionCalories)
         
     }
@@ -128,8 +221,8 @@ class User {
         
         minutesStanding = self.userMinutes
         minutesSitting = 60 - minutesStanding
-      
-        
+        staticStanding = minutesStanding
+        staticSitting = minutesSitting
     }
     
     func createNotifications() {
@@ -181,7 +274,7 @@ class User {
     }
     
     
-
-
+    
+    
     
 }
