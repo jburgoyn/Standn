@@ -17,6 +17,7 @@ class TimerVC: UIViewController {
     @IBOutlet weak var calorieCountLbl: UILabel!
     @IBOutlet weak var pauseButton: CustomButton!
     
+    @IBOutlet weak var debugLabel: UILabel!
     // Variables
     
     var staticStanding = Int()
@@ -52,8 +53,10 @@ class TimerVC: UIViewController {
         
         
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.pauseTimerResign), name:
-//            UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(pauseTimerResign), name:
+            UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(startTimer), name:
+            UIApplicationDidBecomeActiveNotification, object: nil)
         
         
         user.createNotifications()
@@ -62,13 +65,7 @@ class TimerVC: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(TimerVC.startTimer), name:
-//            UIApplicationWillEnterForegroundNotification, object: nil)
-        
-        startTimer()
-    }
+
     
     func createCircularProgress() {
         
@@ -86,8 +83,11 @@ class TimerVC: UIViewController {
         view.addSubview(progress)
     }
     
-//    @IBAction func pauseTimer(sender: AnyObject) {
-//        
+    @IBAction func pauseTimer(sender: AnyObject) {
+        
+        
+        timer.invalidate()
+        
 //        if paused == false {
 //            
 //            timer.invalidate()
@@ -100,7 +100,7 @@ class TimerVC: UIViewController {
 //            paused = false
 //            pauseButton.setTitle("Pause", forState: .Normal)
 //        }
-//    }
+    }
     
     @IBAction func endSchedule(sender: AnyObject) {
         
@@ -157,6 +157,7 @@ class TimerVC: UIViewController {
         print("timeElapsed = \(timeElapsed)")
         
         
+        
         if currentTimeSecond - startTimeSecond > 0 {
             
             if endTime.timeIntervalSinceNow.isSignMinus {
@@ -164,9 +165,11 @@ class TimerVC: UIViewController {
                 print("Schedule Complete")
                 timerLbl.text = "0"
                 progress.angle = 0
-                timer.invalidate()
                 user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                timer.invalidate()
                 
+                debugLabel.text = "Schedule Complete."
+
                 
             } else {
                 
@@ -180,6 +183,9 @@ class TimerVC: UIViewController {
                         minutesSitting = staticSitting - (currentTimeSecond - startTimeSecond)
                         timerLbl.text = String(minutesSitting)
                         progress.angle = Double(minutesSitting*(360/staticSitting))
+                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        
+                        debugLabel.text = "\(timeElapsed)"
                         
                         
                     } else if (currentTimeSecond - startTimeSecond) > staticSitting {
@@ -191,6 +197,7 @@ class TimerVC: UIViewController {
                         progress.angle = Double(minutesStanding*(360/staticStanding))
                         user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
                         print("This is where the problem is")
+                        debugLabel.text = "\(timeElapsed)"
                         
                         
                     }
@@ -205,6 +212,8 @@ class TimerVC: UIViewController {
                         minutesSitting = staticSitting - (currentTimeSecond + 60 - startTimeSecond)
                         timerLbl.text = String(minutesSitting)
                         progress.angle = Double(minutesSitting*(360/staticSitting))
+                        user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
+                        debugLabel.text = "\(timeElapsed)"
                         
                         
                     } else if (currentTimeSecond - startTimeSecond + 60) > staticSitting {
@@ -215,6 +224,7 @@ class TimerVC: UIViewController {
                         progress.angle = Double(minutesStanding*(360/staticStanding))
                         user.calculateCalorieBurn(user.userWeight, calorieLbl: calorieCountLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
                         print("This is where the problem is")
+                        debugLabel.text = "\(timeElapsed)"
                         
                         
                     }

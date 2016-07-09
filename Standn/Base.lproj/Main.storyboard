@@ -720,24 +720,34 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16k-yX-1vf">
+                                <rect key="frame" x="20" y="73" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UTZ-PF-sl7" firstAttribute="top" secondItem="Tzn-PR-jeZ" secondAttribute="bottom" constant="1" id="7Me-3T-OGf"/>
                             <constraint firstItem="CQE-jh-f89" firstAttribute="top" secondItem="te0-GJ-Juo" secondAttribute="top" id="7mm-j7-sRl"/>
                             <constraint firstAttribute="trailing" secondItem="CQE-jh-f89" secondAttribute="trailing" id="DvG-Ns-COL"/>
+                            <constraint firstItem="16k-yX-1vf" firstAttribute="leading" secondItem="te0-GJ-Juo" secondAttribute="leadingMargin" id="L7O-Q0-rcu"/>
                             <constraint firstItem="CQE-jh-f89" firstAttribute="leading" secondItem="te0-GJ-Juo" secondAttribute="leading" id="Qyv-dd-Tyw"/>
                             <constraint firstItem="YVd-NA-Dyl" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="c6T-cs-cpf"/>
                             <constraint firstItem="fSi-zu-uxt" firstAttribute="top" secondItem="Bbe-fY-OFV" secondAttribute="bottom" constant="18" id="cHR-Tm-wkW"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="dIH-wO-rLi"/>
                             <constraint firstItem="Bbe-fY-OFV" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="iBW-JX-Nk7"/>
+                            <constraint firstItem="16k-yX-1vf" firstAttribute="top" secondItem="CQE-jh-f89" secondAttribute="bottom" constant="8" id="u5y-M2-qQq"/>
                             <constraint firstItem="UTZ-PF-sl7" firstAttribute="centerX" secondItem="te0-GJ-Juo" secondAttribute="centerX" id="wUA-ca-D7S"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="16k-yX-1vf" secondAttribute="trailing" id="wki-t4-i6X"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="centerY" secondItem="te0-GJ-Juo" secondAttribute="centerY" id="wwp-ZR-BsM"/>
                             <constraint firstItem="Tzn-PR-jeZ" firstAttribute="top" secondItem="YVd-NA-Dyl" secondAttribute="bottom" constant="8" id="xTn-lW-Olc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="calorieCountLbl" destination="cQC-By-RSX" id="wUf-CC-g9q"/>
+                        <outlet property="debugLabel" destination="16k-yX-1vf" id="SG4-Le-AAU"/>
                         <outlet property="pauseButton" destination="ybY-54-8Nx" id="VcF-QF-CWu"/>
                         <outlet property="stateLbl" destination="YVd-NA-Dyl" id="GMM-2s-4Rf"/>
                         <outlet property="timerLbl" destination="Tzn-PR-jeZ" id="WGR-ou-aqm"/>

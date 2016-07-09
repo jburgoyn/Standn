@@ -158,7 +158,7 @@ class User {
                 
                 let notification = UILocalNotification()
                 
-                notification.alertBody = "You have finished working for now! Check how many calories you've bruned!"
+                notification.alertBody = "You have finished working for now! Check how many calories you've burned!"
                 notification.soundName = UILocalNotificationDefaultSoundName
                 notification.fireDate = notificationTimes[cycle]
                 
@@ -179,6 +179,8 @@ class User {
         }
         
     }
+    
+    
 
 
     
