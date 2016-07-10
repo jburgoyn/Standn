@@ -18,6 +18,8 @@ class TimerVC: UIViewController {
     @IBOutlet weak var pauseButton: CustomButton!
     
     @IBOutlet weak var debugLabel: UILabel!
+    @IBOutlet weak var debugLabel2: UILabel!
+    @IBOutlet weak var debugLabel3: UILabel!
     
     // Variables
     
@@ -30,6 +32,8 @@ class TimerVC: UIViewController {
     var progress = KDCircularProgress()
     
     let user = User()
+    
+    var debugCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +113,10 @@ class TimerVC: UIViewController {
     
     func update() {
         
-        let state = user.update(startTime, endTime: endTime, timerLbl: timerLbl, timer: timer, debugLabel: debugLabel, stateLbl: stateLbl, calorieLbl: calorieCountLbl)
+        debugLabel3.text = "\(debugCount) In Timer VC Update Function"
+        debugCount += 1
+        
+        let state = user.update(startTime, endTime: endTime, timerLbl: timerLbl, timer: timer, stateLbl: stateLbl, calorieLbl: calorieCountLbl, debugLabel: debugLabel, debugLabel2: debugLabel2)
        
         switch state {
             

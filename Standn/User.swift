@@ -32,7 +32,7 @@ class User {
         
     }
     
-    func update(startTime: NSDate, endTime: NSDate, timerLbl: UILabel, timer: NSTimer, debugLabel: UILabel, stateLbl: UILabel, calorieLbl: UILabel) -> String {
+    func update(startTime: NSDate, endTime: NSDate, timerLbl: UILabel, timer: NSTimer, stateLbl: UILabel, calorieLbl: UILabel, debugLabel: UILabel, debugLabel2: UILabel) -> String {
         
         print("****************")
         let currentTime = NSDate()
@@ -42,11 +42,14 @@ class User {
         let calendar = NSCalendar.currentCalendar()
         let startTimeMinute = calendar.component(.Minute, fromDate: startTime)
         let currentTimeMinute = calendar.component(.Minute, fromDate: currentTime)
+        let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
         
         
         print("\(startTimeMinute) start time seconds")
         print("\(currentTimeMinute) current time seconds")
         print("timeElapsed = \(timeElapsed)")
+        
+        debugLabel2.text = "\(currentTimeSecond) Current Time Second. User"
         
         
         
@@ -56,6 +59,7 @@ class User {
                 
                 print("Schedule Complete")
                 timerLbl.text = "0"
+                self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
                 timer.invalidate()
                 
                 debugLabel.text = "Schedule Complete."
@@ -117,12 +121,19 @@ class User {
                         debugLabel.text = "\(timeElapsed)"
                         
                         return "StandingNegative"
-
+                        
                     }
+                    
+                    debugLabel.text = "problem here 1"
                 }
+                
+                debugLabel.text = "problem here 2"
             }
+            
+            debugLabel.text = "problem here 3"
         }
         
+        debugLabel.text = "problem here 4"
         return "Spooling"
     }
     
