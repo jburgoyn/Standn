@@ -53,7 +53,7 @@ class User {
         
         
         
-        if currentTimeMinute - startTimeMinute > 0 {
+        if currentTimeSecond - timeElapsed < 0 {
             
             if endTime.timeIntervalSinceNow.isSignMinus {
                 
@@ -131,7 +131,7 @@ class User {
             }
             
             debugLabel.text = "problem here 3"
-        }
+       }
         
         debugLabel.text = "problem here 4"
         return "Spooling"
@@ -238,11 +238,15 @@ class User {
     
     func createNotifications() {
         
+        let currentTime = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
+        
         for cycle in 1 ... self.userHours {
             
             
-            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(60 * (cycle * minutesSitting + ((cycle - 1) * minutesStanding)))))
-            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(60 * (cycle * minutesStanding + cycle * minutesSitting))))
+            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(60 * (cycle * minutesSitting + ((cycle - 1) * minutesStanding)) + (60 - currentTimeSecond) )))
+            notificationTimes.append(NSDate().dateByAddingTimeInterval(Double(60 * (cycle * minutesStanding + cycle * minutesSitting) + (60 - currentTimeSecond) )))
             
         }
         

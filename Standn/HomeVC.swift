@@ -68,6 +68,9 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         createWeightsKG()
         expandSpinner()
         
+        print(weights)
+        print(weightsKG)
+        
         
         weightSpinner.delegate = self
         weightSpinner.dataSource = self
@@ -312,10 +315,8 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         
         for weight in weights {
             
-            print(weight)
             let kg = Int(weight) / 2
             weightsKG.append(kg)
-            
         }
         
     }
@@ -607,6 +608,15 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
             
             self.userConversion = userConversion
             
+            if userConversion == "lb" {
+                
+                weightSpinner.selectRow(0, inComponent: 1, animated: false)
+                
+            } else {
+                
+                weightSpinner.selectRow(1, inComponent: 1, animated: false)
+            }
+            
         } else {
             
             self.userConversion = "lb"
@@ -614,11 +624,37 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         
         // ** Hours Settings on StartUp ** //
         
-        hoursSpinner.selectRow(7, inComponent: 0, animated: false)
+        //hoursSpinner.selectRow(7, inComponent: 0, animated: false)
+        
+        if let hour = preference.objectForKey("userHours") as? Int {
+            
+            self.userHours = hour
+            hoursSpinner.selectRow(hour-1, inComponent: 0, animated: false)
+            self.hoursLbl.text = "\(userHours) Hours"
+            
+        } else {
+            
+            self.userHours = 8
+            hoursSpinner.selectRow(7, inComponent: 0, animated: false)
+            self.hoursLbl.text = "\(userHours) Hours"
+        }
         
         // ** Minutes Settings on StartUp ** //
         
-        minutesSpinner.selectRow(2, inComponent: 0, animated: false)
+        //minutesSpinner.selectRow(2, inComponent: 0, animated: false)
+        
+        if let minutes = preference.objectForKey("userMinutes") as? Int {
+            
+            self.userMinutes = minutes
+            minutesSpinner.selectRow((minutes/5)-1, inComponent: 0, animated: false)
+            self.minutesLbl.text = "\(userMinutes) Minutes"
+            
+        } else {
+            
+            self.userMinutes = 15
+            minutesSpinner.selectRow(2, inComponent: 0, animated: false)
+            self.minutesLbl.text = "\(userMinutes) Minutes"
+        }
         
         // LifetimeCalories on Appear //
         
@@ -633,11 +669,6 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         
         self.lifeTimeCalLbl.text = "Since using Standn, you have burned an extra \(lifeTimeCalories) calories!"
         
-    }
-    
-    @IBAction func whyStandBtnPressed(sender: AnyObject) {
-        
-        performSegueWithIdentifier("toEducation", sender: nil)
     }
     
 }
