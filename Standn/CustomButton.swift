@@ -47,9 +47,9 @@ class CustomButton: UIButton {
         
         // Calling animation
         self.addTarget(self, action: #selector(CustomButton.scaleToSmall), forControlEvents: .TouchDown)
-        self.addTarget(self, action: "scaleToSmall", forControlEvents: .TouchDragEnter)
-        self.addTarget(self, action: "scaleAnimation", forControlEvents: .TouchUpInside)
-        self.addTarget(self, action: "scaleToDefault", forControlEvents: .TouchDragExit)
+        self.addTarget(self, action: #selector(CustomButton.scaleToSmall), forControlEvents: .TouchDragEnter)
+        self.addTarget(self, action: #selector(CustomButton.scaleAnimation), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(CustomButton.scaleToDefault), forControlEvents: .TouchDragExit)
     }
     
     func scaleToSmall() {
@@ -69,7 +69,7 @@ class CustomButton: UIButton {
         self.layer.pop_addAnimation(scaleAnim, forKey: "layerScaleSpringAnimation")
     }
     
-    func scaleDefault() {
+    func scaleToDefault() {
         
         let scaleAnim = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
         scaleAnim.toValue = NSValue(CGSize: CGSizeMake(1, 1))
