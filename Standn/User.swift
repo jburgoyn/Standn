@@ -53,7 +53,7 @@ class User {
         
         
         
-        if currentTimeMinute - startTimeMinute > 0 {
+        //if currentTimeMinute - startTimeMinute > 0 {
             
             if endTime.timeIntervalSinceNow.isSignMinus {
                 
@@ -131,7 +131,7 @@ class User {
             }
             
             debugLabel.text = "problem here 3"
-        }
+        //}
         
         debugLabel.text = "problem here 4"
         return "Spooling"
