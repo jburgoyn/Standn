@@ -53,16 +53,17 @@ class User {
         
         
         
-        //if currentTimeMinute - startTimeMinute > 0 {
+        if currentTimeMinute - startTimeMinute > 0 {
             
             if endTime.timeIntervalSinceNow.isSignMinus {
                 
                 print("Schedule Complete")
                 timerLbl.text = "0"
-                self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                timer.invalidate()
                 
-                debugLabel.text = "Schedule Complete."
+                sessionCalories = Int(Double(userHours) * Double(staticStanding)*((Double(userWeight) * 0.0053) + 0.0058))
+                //timer.invalidate()
+                
+                debugLabel.text = "Schedule Complete. \(timeElapsed)"
                 return "ScheduleOver"
                 
                 
@@ -79,8 +80,8 @@ class User {
                         timerLbl.text = String(minutesSitting)
                         self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
                         
-                        debugLabel.text = "\(timeElapsed)"
-                        
+                        debugLabel.text = "Sitting Positive \(timeElapsed)"
+                        print("Minutes sitting \(minutesSitting)")
                         return "SittingPositive"
                         
                         
@@ -90,7 +91,7 @@ class User {
                         minutesStanding = startTimeMinute - currentTimeMinute + 60
                         timerLbl.text = String(minutesStanding)
                         self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        debugLabel.text = "\(timeElapsed)"
+                        debugLabel.text = "Standing Positive\(timeElapsed)"
                         
                         return "StandingPositive"
                         
@@ -107,7 +108,7 @@ class User {
                         minutesSitting = staticSitting - (currentTimeMinute + 60 - startTimeMinute)
                         timerLbl.text = String(minutesSitting)
                         self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        debugLabel.text = "\(timeElapsed)"
+                        debugLabel.text = "Sitting Negative\(timeElapsed)"
                         
                         return "SittingNegative"
                         
@@ -118,7 +119,7 @@ class User {
                         minutesStanding = startTimeMinute - currentTimeMinute
                         timerLbl.text = String(minutesStanding)
                         self.calculateCalorieBurn(userWeight, calorieLbl: calorieLbl, startTime: startTime, endTime: endTime, currentTime: currentTime)
-                        debugLabel.text = "\(timeElapsed)"
+                        debugLabel.text = "Standing Negatove \(timeElapsed)"
                         
                         return "StandingNegative"
                         
@@ -131,7 +132,7 @@ class User {
             }
             
             debugLabel.text = "problem here 3"
-        //}
+        }
         
         debugLabel.text = "problem here 4"
         return "Spooling"
@@ -157,12 +158,12 @@ class User {
             if Int(remainder) < (60 - staticStanding) {
                 
                 print("got here 1")
-                sessionCalories = Int(caloriesBurnedPerMinute * whole * Double(staticStanding))
+                sessionCalories = Int(caloriesBurnedPerMinute * Double(Int(whole) * staticStanding))
                 
             } else if Int(remainder) > (60 - staticStanding) {
                 
                 print("got here 2")
-                sessionCalories = Int(caloriesBurnedPerMinute * whole * Double(staticStanding) + caloriesBurnedPerMinute * (remainder - Double(staticSitting)))
+                sessionCalories = Int(caloriesBurnedPerMinute * Double(Int(whole) * staticStanding) + caloriesBurnedPerMinute * (remainder - Double(staticSitting)))
             }
             
         } else {

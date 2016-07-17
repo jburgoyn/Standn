@@ -122,26 +122,30 @@ class TimerVC: UIViewController {
             
         case "SittingPositive":
             
-            progress.angle = Double(user.minutesSitting*(360/user.staticSitting))
+            progress.angle = Double(user.minutesSitting)*(360.0/Double(user.staticSitting))
             print("Sitting")
+            print(user.staticSitting)
+
+            print(progress.angle)
             
         case "StandingPositive":
             
-            progress.angle = Double(user.minutesStanding*(360/user.staticStanding))
+            progress.angle = Double(user.minutesStanding)*(360.0/Double(user.staticStanding))
             print("Standing")
             
        case "SittingNegative":
         
-            progress.angle = Double(user.minutesSitting*(360/user.staticSitting))
+            progress.angle = Double(user.minutesSitting)*(360.0/Double(user.staticSitting))
             print("Sitting")
             
         case "StandingNegative":
             
-            progress.angle = Double(user.minutesStanding*(360/user.staticStanding))
+            progress.angle = Double(user.minutesStanding)*(360.0/Double(user.staticStanding))
             print("STanding")
          
         case "Spooling":
             
+            progress.angle = 353.5
             print("Spooling")
             
         case "ScheduleOver":
