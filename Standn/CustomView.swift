@@ -28,7 +28,7 @@ class CustomView: UIImageView {
         scaleAnim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
         scaleAnim.springBounciness = 18
         self.layer.pop_addAnimation(scaleAnim, forKey: "layerScaleSpringAnimation")
-        print("got here2")
+        print("got to animation")
         
     }
     

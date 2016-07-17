@@ -378,7 +378,7 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
                     self.hoursSpinnerBottomBorder.hidden = false
                     
                 }
-
+                
             } else if weightSpinner.hidden == true {
                 
                 
@@ -539,7 +539,7 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
                 }
                 
             }
-        
+            
         } else if weightSpinnerHidden == false {
             
             self.weightSpinner.hidden = true
@@ -605,7 +605,14 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         
         if let userConversion = preference.objectForKey("userConversion") as? String {
             
-            self.userConversion = userConversion
+            if userConversion == "lb" {
+                
+                weightSpinner.selectRow(0, inComponent: 1, animated: false)
+                
+            } else {
+                
+                weightSpinner.selectRow(1, inComponent: 1, animated: false)
+            }
             
         } else {
             
@@ -614,11 +621,33 @@ class HomeVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIP
         
         // ** Hours Settings on StartUp ** //
         
-        hoursSpinner.selectRow(7, inComponent: 0, animated: false)
+        if let hour = preference.objectForKey("userHours") as? Int {
+            
+            self.userHours = hour
+            hoursSpinner.selectRow(hour-1, inComponent: 0, animated: false)
+            self.hoursLbl.text = "\(userHours) Hours"
+            
+        } else {
+            
+            self.userHours = 8
+            hoursSpinner.selectRow(7, inComponent: 0, animated: false)
+            self.hoursLbl.text = "\(userHours) Hours"
+        }
         
         // ** Minutes Settings on StartUp ** //
         
-        minutesSpinner.selectRow(2, inComponent: 0, animated: false)
+        if let minutes = preference.objectForKey("userMinutes") as? Int {
+            
+            self.userMinutes = minutes
+            minutesSpinner.selectRow((minutes/5) - 1, inComponent: 0, animated: false)
+            self.minutesLbl.text = "\(userMinutes) Minutes"
+            
+        } else {
+            
+            self.userMinutes = 15
+            minutesSpinner.selectRow(2, inComponent: 0, animated: false)
+            self.minutesLbl.text = "\(userMinutes) Minutes"
+        }
         
         // LifetimeCalories on Appear //
         
