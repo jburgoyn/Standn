@@ -35,12 +35,18 @@ class User {
     func update(startTime: NSDate, endTime: NSDate, timerLbl: UILabel, timer: NSTimer, stateLbl: UILabel, calorieLbl: UILabel, debugLabel: UILabel, debugLabel2: UILabel) -> String {
         
         print("****************")
+        // for debug changed currentTime from let to var
         let currentTime = NSDate()
+        // Debug Current Time
+        //let currentTimeDebug = currentTime.dateByAddingTimeInterval(3500)
+        //currentTime = currentTimeDebug
+        
         let timeElapsed = Int(currentTime.timeIntervalSinceDate(startTime))
         print("\(timeElapsed) seconds have passed since beginning schedule")
         
         let calendar = NSCalendar.currentCalendar()
         let startTimeMinute = calendar.component(.Minute, fromDate: startTime)
+        let startTimeSecond = calendar.component(.Second, fromDate: startTime)
         let currentTimeMinute = calendar.component(.Minute, fromDate: currentTime)
         let currentTimeSecond = calendar.component(.Second, fromDate: currentTime)
         
@@ -53,7 +59,7 @@ class User {
         
         
         
-        if currentTimeMinute - startTimeMinute > 0 {
+        if timeElapsed > (60 - startTimeSecond) {
             
             if endTime.timeIntervalSinceNow.isSignMinus {
                 
@@ -61,9 +67,10 @@ class User {
                 timerLbl.text = "0"
                 
                 sessionCalories = Int(Double(userHours) * Double(staticStanding)*((Double(userWeight) * 0.0053) + 0.0058))
-                //timer.invalidate()
+                calorieLbl.text = "\(sessionCalories)"
+                timer.invalidate()
                 
-                debugLabel.text = "Schedule Complete. \(timeElapsed)"
+                debugLabel.text = "Schedule Complete. \(timeElapsed) cals: \(sessionCalories)"
                 return "ScheduleOver"
                 
                 
@@ -182,9 +189,6 @@ class User {
             
         }
         
-        
-        //sessionCalories += caloriesBurnedPerMinute
-        //lifetimeCalories += caloriesBurnedPerMinute
         
         print("Session Cals\(sessionCalories)")
         print(weight)
